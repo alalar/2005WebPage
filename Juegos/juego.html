@@ -1,0 +1,234 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var cursorX;
+var cursorY;
+var inX=new Array;
+var inY=new Array;
+var cadena=new Array("Espacio","Busca la pareja","Ordena tablero","Ping Pong");
+var descripcion=new Array("Debes evitar tocar cualquier pelota. Avoid being touch by any ball",
+	"Busca las parejas en las fichas. Find the pairs","Ordena los numeros en orden ascendente. Sort order the numbers",
+        "El juego clasico de arcade. Old arcade game")
+var pagina=new Array("juego2.html","juego1.html","juego3.html","juego4.html");
+var total=4;
+var resultado=50;
+var segundos=0;
+var minX = window.screen.width * 1/6
+var minY = window.screen.height * 1/6
+var anchoX=window.screen.width * 5/6;
+var anchoY=window.screen.height * 5/6;
+
+var tamX=100;
+var tamY=50;
+function PosX(capa)
+{
+ return(parseInt(document.getElementById(capa).style.left))
+}
+function PosY(capa)
+{
+  return(parseInt(document.getElementById(capa).style.top))
+}
+
+function  MoverX(capa,X)
+{
+  document.getElementById(capa).style.left=X;
+}
+function  MoverY(capa,Y)
+{
+  document.getElementById(capa).style.top=Y;
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+  document.getElementById(capa).style.visibility="visible";
+}
+function OcultarCapa(capa)
+{
+  document.getElementById(capa).style.visibility="hidden";
+}
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+	// tu código va aquí
+      
+	return true
+}
+function vibrar(cont)
+{
+ if (cont==0)
+ {
+   document.body.bgColor="#bfbfbf";
+   setTimeout("vibrar("+(cont+1)+")",50);
+ }
+ if (cont==1)
+ {
+  document.body.bgColor="#FF9F3F";
+ }
+}
+
+function moverPelota()
+{
+ var pX;
+ var pY;
+ for (x=0;x<total;++x)
+ {
+  pX=PosX("pelota"+x)+inX[x];
+  if (pX<minX)
+   {
+    pX=minX
+    inX[x]=inX[x]*-1;
+   }
+  if (pX>anchoX-tamX)
+  {
+    pX=anchoX-tamX
+    inX[x]=inX[x]*-1;
+  }
+  pY=PosY("pelota"+x)+inY[x];
+  if (pY<minY)
+  {
+   pY=minY
+   inY[x]=inY[x]*-1
+  }
+  if (pY>anchoY-200)
+   {
+    pY=anchoY-200 
+    inY[x]=inY[x]*-1
+   }
+   
+   for (y=0;y<total;++y)
+   {
+    if (y!=x) 
+    {
+     if ( (Math.abs(pX-PosX("pelota"+y))<=tamX) && (Math.abs(pY-PosY("pelota"+y))<=tamY) )
+      {
+       if (Math.abs(pX-PosX("pelota"+y))>Math.abs(pY-PosY("pelota"+y))) 
+        {
+         inX[x]=inX[x]*-1;
+        }
+        else
+         if (Math.abs(pX-PosX("pelota"+y))==Math.abs(pY-PosY("pelota"+y))) 
+         {
+          inX[x]=inX[x]*-1;
+	   			inY[x]=inY[x]*-1;
+         }
+         else
+         {
+          inY[x]=inY[x]*-1;
+         }
+       while ((Math.abs(pX-PosX("pelota"+y))<=tamX) && (Math.abs(pY-PosY("pelota"+y))<=tamY))
+        {
+				 pX=pX+inX[x];
+				 pY=pY+inY[x];
+				}
+       y=total
+     }
+    }
+   }
+
+  MoverXY("pelota"+x,pX,pY)
+ }
+ setTimeout("moverPelota()",400);
+}
+function irA(x)
+{
+ document.location=pagina[x];
+}
+function describir(x)
+{
+ document.all["descripcion"].innerHTML="<CENTER>"+descripcion[x]+"</Center>";
+ VerCapa("descripcion")
+}
+
+function Inicio()
+{
+  
+ for (x=0;x<total;++x)
+ {
+ var lstposicion=new Array(Math.round((anchoX-minX)/2)+minX,0,1000,Math.round((anchoY-minY)/2),Math.round((anchoX-minX)/2)+minX,1000,0,Math.round((anchoY-minY)/2));
+  inY[x]=Math.round(Math.random()*3) + 3;
+  if (x>1) {inY[x]=inY[x]*-1}
+  inX[x]=Math.round(Math.random()*3) + 3;
+  if (x==1 || x==2) {inX[x]=inX[x]*-1}
+//  if (parseInt(Math.random()*2)==1) {inX[x]=inX[x]*-1}
+  document.write('<Div id="pelota'+x+'" Style="position:absolute;');
+  document.write('font-family:    impact;'+
+                 ' font-size:      15px;'+
+		'left:		'+lstposicion[2*x]+'px;'+
+		'top:		'+lstposicion[2*x+1]+'px;'+
+		'width:		'+tamX+'px;'+
+		'height:	'+tamY+'px;'+
+		'visibility:	show;'+
+		'color:		#4FAFFF;'+
+		'background-image:url(./Nube.gif);'+
+		'cursor:	pointer;'+
+		'z-index:	1;"'+
+		'onmouseout="OcultarCapa('+"'descripcion'"+')"'+
+		'onclick="irA('+x+')"'+
+		'onmouseover="describir('+x+')">');
+ document.write('<center style="position:relative;left:3px;top:10px;">'+cadena[x]+'</center>');
+ document.write('</div>');
+ }
+ moverPelota()
+}
+
+
+-->
+</SCRIPT>
+<Style>
+A{
+text-decoration:	none;
+color:			#4FAFFF;
+}
+.BordeBrillante
+{
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 width:300px;
+	 height:20px;
+	 -webkit-box-shadow:  #00FF00 0px 0px 30px;
+	 -moz-box-shadow:  #00FF00 0px 0px 30px;
+	 box-shadow: #FFFFFF 0px 0px 30px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+</Style>
+</head>
+<body bgcolor="#FFAF3F" background="clouds2.gif" style="overflow-x:hidden;overflow-y:hidden">
+<Script>
+Inicio()
+</Script>
+<Div id="descripcion" Style="position:relative;
+font-family: Helvetia;
+font-size:	20px;
+font-weight: bold;
+top:		20px;
+height:		1px;
+width:		100%;;
+color:		#3333FF;
+visibility:	hidden;
+text-align:center;
+z-index:	1;" class="BordeBrillante">
+Descripcion del juego: <P>
+</Div>
+<Script>
+	document.write("<Div id='Inicio' Style='position:absolute;left:30px;top:" + parseInt(window.screen.height - 240) + "px;cursor:pointer;' " +
+	"onclick=\"document.location='../inicio.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+</Script>
+</body>
+</html>

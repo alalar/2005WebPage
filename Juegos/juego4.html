@@ -1,0 +1,315 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var minX=window.screen.width / 10;
+var minY=window.screen.height /10;
+var anchoX=window.screen.width * 8/10;
+var anchoY=window.screen.height * 67/100 ;
+var tamX=10;
+var tamY=window.screen.height /10;
+var cursorY;
+var margen=20;
+var PastillaDX=anchoX-margen+tamX-2;
+var PastillaIX=minX+margen
+var MedioX1=minX+anchoX/5;
+var MedioX2=anchoX * 8/10;
+
+
+var Velocidad=19;
+var inPX=8;
+var inPY=4;
+var tamBola=15;
+
+var segundos=0;
+var resultado=0;
+var fin=1;
+
+var color="#FF0F7F";
+var Bcolor="#FF8F55";
+var colorVer="#FFFFFF";
+
+var record=160;
+var nrecord="NILO";
+function PosX(capa)
+{
+ return(parseInt(document.getElementById(capa).style.left))
+}
+function PosY(capa)
+{
+  return(parseInt(document.getElementById(capa).style.top))
+}
+
+function  MoverX(capa,X)
+{
+  document.getElementById(capa).style.left=X;
+}
+function  MoverY(capa,Y)
+{
+  document.getElementById(capa).style.top=Y;
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+  document.getElementById(capa).style.visibility="visible";
+}
+function OcultarCapa(capa)
+{
+  document.getElementById(capa).style.visibility="hidden";
+}
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+	    y=(y>(anchoY-tamY-3))?(anchoY-tamY-3):y
+        y=(y<(minY+18))?minY+18:y
+        cursorY=y;         
+        MoverY("pastillaD",y);
+        MoverY("pastillaI",y);
+	return true
+}
+
+function final()
+{
+ var cadena;
+ fin=1;
+ if (segundos>record)
+ {
+   segundos=segundos*4;
+   cadena=segundos.toString(16)+"DED4J";
+   alert('ENHORABUENA HAS SUPERADO EL RECORD ACTUAL, MANDA UN CORREO A albertobego@hotmail.com'+
+    'con tu nombre, la puntuacion y la siguiente cadena de comprobacion '+cadena);
+   segundos=segundos/4;
+ } 
+ else
+ {
+   alert('Lo siento no has superado el record. \r Sorry you do not break the record' );
+ }
+}
+
+function moverPelota(pelota,incrementoX,incrementoY)
+{
+ var pX;
+ var pY;
+ var sol=0;
+ var gol=false;
+ incrementoX=(incrementoX>0)?incrementoX+parseInt(segundos/25):incrementoX-parseInt(segundos/25);
+ pX=PosX(pelota);
+ 
+ if ( ( (pX<MedioX1) && ((pX+incrementoX)>MedioX1) ) ||
+      ( (pX>MedioX1) && ((pX+incrementoX)<MedioX1) )  )
+   { sol=parseInt(Math.random()*2) }
+ if ( ( (pX<MedioX2) && ((pX+incrementoX)>MedioX2) ) ||
+      ( (pX>MedioX2) && ((pX+incrementoX)<MedioX2) )  )
+   { sol=parseInt(Math.random()*2) }
+ pX=pX+incrementoX;
+ incrementoY=(incrementoY>0)?incrementoY+parseInt(segundos/35):incrementoY-parseInt(segundos/35);
+ pY=PosY(pelota)+incrementoY;
+ MoverXY(pelota,pX,pY)
+ if (pY<(minY)+12)
+ {
+  pY=(minY)+12
+  sol=1
+ }
+ if (pY>(anchoY-(2*tamBola)-5))
+  {
+   pY=anchoY-(2*tamBola)-5
+   sol=1
+  }
+ var zona;
+ if ((pX+(2*tamBola))>=PastillaDX)
+ {
+  zona=pY-PosY("pastillaD");
+  if ( (zona>-(2*tamBola)) && (zona<=tamY) ) 
+  {
+    	if ( zona<=0  ) { sol=2 }
+	if ( (zona>0) && (zona<=(tamY-(2*tamBola))) )   { sol=3 }
+	if ( zona>(tamY-(2*tamBola)) ) { sol=4 }
+  }
+  else
+  {
+    MoverXY(pelota,PastillaDX,pY)
+    gol=true;
+    MoverXY(pelota,parseInt(anchoX/2),parseInt(anchoY/2));
+  }
+ }
+ if (pX<=(PastillaIX+tamX))
+ {
+  zona=pY-PosY("pastillaI")
+  if ( (zona>-(2*tamBola)) && (zona<=tamY) ) 
+  {
+    	if ( zona<=0  ) { sol=2 }
+	if ( (zona>0) && (zona<=(tamY-(2*tamBola))) )   { sol=3 }
+	if ( zona>(tamY-(2*tamBola)) ) { sol=4 }
+  }
+  else
+  {
+    MoverXY(pelota,PastillaIX-tamX,pY)
+    gol=true;
+    MoverXY(pelota,parseInt(anchoX/2),parseInt(anchoY/2));
+  }
+ }
+ if (gol==false) 
+   {    MoverXY(pelota,pX,pY) } 
+  else
+   { fin=1 }
+
+ return sol;
+}
+function Pelota()
+{
+  var res=moverPelota("pelota",inPX,inPY);
+  inPY=(res==1)?inPY * -1:inPY
+  inPX=(res>1)?inPX * -1:inPX
+  if (res==2) { inPY=Math.abs(inPY)*-1 }
+  if (res==3) { inPY=inPY }
+  if (res==4) { inPY=(Math.abs(inPY)) }
+  var aux=( (Velocidad-(parseInt(segundos/10))) <=5)?5:Velocidad-(parseInt(segundos/10))
+  if (fin==0) 
+    {  setTimeout("Pelota()",aux); }
+   else
+    { MoverXY("pelota",parseInt(anchoX/2),parseInt(anchoY/2));
+      final() }
+}
+function CuentaTiempo()
+{
+ if (segundos==0) {document.getElementById('Empezar').innerHTML='<a href="#"><Center>Stop</center></a>'}
+ segundos=segundos+1;
+ document.all["Ptitulo"].innerHTML='<Center><b>RECORD '+record+' secs '+nrecord+'</b>'+
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+		'<font color="#0000FF">'+ segundos +' seconds</font></center>'
+		
+
+ if (fin==0) { setTimeout("CuentaTiempo()",1000); }
+    else     {document.getElementById('Empezar').innerHTML='<a href="#"><Center>Start</center></a>' }
+}
+function Inicio()
+{
+ document.write('<Div id="Tablero" Style="position:absolute;'+
+		'left:		'+minX+'px;top:		'+minY+'px;'+
+		'width:		'+(anchoX-minX)+'px;height:	'+(anchoY-minY)+'px;'+
+		'z-index:	0;" >'+
+		'<image src="tablero.gif" class="BordeTablero" style="position:relative;margin:0px;padding:0px;top:0px;left:0px;" Width='+(anchoX-minX)+' Height='+(anchoY-minY)+'>'+
+		'</Div>');
+ document.write('<Div id="pastillaI" Style="position:absolute;'+
+		'left:  	'+PastillaIX+'px;top:	' + (minY + 50) + 'px;'+
+		'width:		10px;height:' + tamY + 'px;'+
+		'background:	#FF00FF;">'+
+		'</Div>');
+ document.write('<Div id="pastillaD" Style="position:absolute;'+
+		'left:  	'+PastillaDX+'px;top:	' + (minY + 50) + 'px;'+
+		'width:		10px;height:' + tamY + 'px;'+
+		'background:	#FF00FF;">'+
+		'</Div>');
+document.write('<Div id="pelota" Style="position:absolute;'+
+		'left:		'+parseInt(anchoX/2)+'px;top:'+parseInt(anchoY/2)+'px;'+
+		'width:		30px;height:		30px;'+
+		'visibility:	visible;color:		#FFFF00;'+
+		'z-index:	3;"></Div>');
+document.write('<Div id="Ptitulo" Style="position:absolute;'+
+		'font-family:	Comic Sans MS;font-size:      20px;'+
+		'left:' +		minX +'px;top:		5px;'+
+		'width:		580px;height:		35px;'+
+		'visibility:	visible;background:     #00F200;'+
+		'color:		#FF005F;z-index:	0;" class="Borde">'+
+		'<Center><b>RECORD '+record+' secs by '+nrecord+'</b>'+
+		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+		'<font color="#0000FF">'+ segundos +' seconds</font></center>'+
+		'</Div>');
+document.write('<Div id="Empezar" Style="position:absolute; ' +
+	'font-family:	Impact; ' +
+	'font-size:      20px; ' +
+	'left:		' + (anchoX - 90) +'px; '+
+	'top:		5px; ' +
+	'width:		90px; ' +
+	'height:		30px; ' +
+	'background:     #0000FF; ' +
+	'color:		#FFFF00; ' +
+	'text-align:center;" ' +
+	'onclick="if (fin==1)  ' +
+	'			  {segundos=0;fin=0;Pelota();CuentaTiempo();} ' +
+	'			else ' +
+	'			  { fin=1};" ' +
+	'onmouseover = "window.status=\'START\';this.style.background=\'#FF0000\';return true;" ' +
+	'onmouseout = "window.status=\'\';this.style.background=\'#0000FF\';return true;" ' +
+	' class="Borde"> ' +
+	'<a href="#">Start</a> ' +
+	'</Div>');
+		
+ document.onmousemove = mouseMove;
+}
+-->
+</SCRIPT>
+<Style>
+a {
+	text-decoration:none;
+	color:white;
+	width:100%;
+	height:100%;
+}
+.BordeTablero
+{
+	border:solid 10px #FF0000;
+	margin:0px;
+	padding:0px;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #FF0000 0px 0px 50px;
+	 -moz-box-shadow: #FF0000 0px 0px 50px;
+	 box-shadow: #FF0000 0px 0px 50px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+
+.Borde
+{
+	
+	border:solid 2px #FFFF00;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	 padding:3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+#pelota
+{
+	border:solid 2px #FFFF00;
+	background: #FFFF00;
+	-webkit-border-radius: 20px;
+	 -moz-border-radius: 20px;
+	 border-radius: 20px;
+	 -webkit-box-shadow: #666 2px 2px 6px;
+	 -moz-box-shadow: #666 2px 2px 6px;
+	 box-shadow: #666 2px 2px 6px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+</Style>
+</head>
+<body bgcolor="#EEEEEE" style="overflow-x:hidden;overflow-y:hidden">
+
+<Script>
+Inicio();
+	document.write("<Div id='Inicio' Style='position:absolute;left:20px;top:" + (window.screen.height-235) + "px;cursor:pointer;' " +
+	"onclick=\"document.location='./juego.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+</Script>
+</body>
+</html>

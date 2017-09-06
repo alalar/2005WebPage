@@ -1,0 +1,303 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+function PosX(capa)
+{
+ return(parseInt(document.getElementById(capa).style.left))
+}
+function PosY(capa)
+{
+  return(parseInt(document.getElementById(capa).style.top))
+}
+
+function  MoverX(capa,X)
+{
+  document.getElementById(capa).style.left=X;
+}
+function  MoverY(capa,Y)
+{
+  document.getElementById(capa).style.top=Y;
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+  document.getElementById(capa).style.visibility="visible";
+}
+function OcultarCapa(capa)
+{
+  document.getElementById(capa).style.visibility="hidden";
+}
+
+var cursorX=1
+var cursorY=1
+var divisor=13
+var Xderecha=window.screen.width;
+var Xmargen = window.screen.width/6
+var Yabajo=window.screen.height * 70/100;
+var Ymargen = window.screen.height/6;
+var XI=1
+var XD=1
+var YS=1
+var YI=1
+var Tiempo=30
+var ActivarCursor=0
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+  ActivarCursor=1
+  x=((x-15)>Xderecha-Xmargen)?Xderecha-Xmargen:x-15
+  cursorX=(x<Xmargen)?Xmargen:x
+  y=((y-10)>Yabajo-Ymargen)?Yabajo-Ymargen:y-10
+  cursorY=(y<Ymargen)?Ymargen:y
+	XI=(cursorX-5)/divisor
+	XD=(cursorX-5-Xderecha)/divisor
+	YS=(cursorY-9)/divisor
+	YI=(cursorY-9-Yabajo)/divisor
+  return true
+}
+var colores = new Array ("#80201F","#85355F","#2A4AAF","#5F5F5F")
+function Inicio()
+{
+ document.onmousemove = mouseMove
+ Cruz()
+ for (x=0;x<4;++x)
+ {
+  //MoverXY("cuadro"+x,1,1);
+  document.getElementById("cuadro"+x).style.background=colores[x]
+ }
+}
+function Cruz()
+{
+   var intMargen=10;
+   document.getElementById("cuadro0").style.width=(cursorX-intMargen>0)?cursorX-intMargen:0;
+   document.getElementById("cuadro0").style.height=(cursorY-intMargen>0)?cursorY-intMargen:0;
+   
+   MoverX("cuadro1",cursorX+intMargen);
+   document.getElementById("cuadro1").style.height=(cursorY-intMargen>0)?cursorY-intMargen:0;
+   document.getElementById("cuadro1").style.width=Xderecha-cursorX-30;
+   
+   MoverY("cuadro2",cursorY+intMargen);
+   document.getElementById("cuadro2").style.height=Yabajo-cursorY;
+   document.getElementById("cuadro2").style.width=(cursorX-intMargen>0)?cursorX-intMargen:0;
+  
+   MoverXY("cuadro3",cursorX+intMargen,cursorY+intMargen)
+   document.getElementById("cuadro3").style.width=Xderecha-cursorX - 30;
+   document.getElementById("cuadro3").style.height=Yabajo-cursorY;
+ 
+ setTimeout("Cruz()",50);
+}
+
+-->
+</SCRIPT>
+<Style>
+.Tcursor {
+font-family:    WebDings;
+font-size:      9px;
+color:          #FFFFFF;
+position:       absolute;
+top:            -50px;
+left:           -50px;
+visibility:     hidden;
+width:		150px;
+height:		1px;	
+z-index:        0;
+}
+.CssPanelInfo
+{
+	font-family:	Helvetica;
+	font-size:		20px;
+	overflow: hidden;
+	margin:3px;
+	border:solid 2px #33CCFF;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#E82654), to(#EE4B33));
+	background: -webkit-linear-gradient(#E82654, #EE4B33);
+	background: -moz-linear-gradient(#E82654, #EE4B33);
+	background: -ms-linear-gradient(#E82654, #EE4B33);
+	background: -o-linear-gradient(#E82654, #EE4B33);
+	background: linear-gradient(#E82654, #EE4B33);
+	-pie-background: linear-gradient(#E82654, #D626E8);
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	 padding:3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+p {
+	margin-top:1px;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF" style="overflow-x:hidden;overflow-y:hidden;">
+<Div id="cuadro0" Style="
+overflow:		hidden;
+position:		absolute;
+color:			#FFFF00;
+top:			1px;
+left:			1px;
+" class="CssPanelInfo">
+</Div>
+<Div id="cuadro1" Style="
+overflow:		hidden;
+position:		absolute;
+color:			#00FFFF;
+top:			1px;
+left:			400px;
+" class="CssPanelInfo">
+<B>
+
+</Div>
+<Div id="cuadro2" Style="
+overflow:		hidden;
+position:		absolute;
+color:			#33FF88;
+top:			300px;
+left:			1px;
+" class="CssPanelInfo">
+</Div>
+<Div id="cuadro3" Style="
+overflow:		hidden;
+position:		absolute;
+color:			#FFFFFF;
+top:			300px;
+left:			400px;
+" class="CssPanelInfo">
+
+</Div>
+
+<Script>
+var paginaES = new Array("<Center> DATOS PERSONALES </Center>" +
+				"<ul><li>Nombe: Alberto Alvarez Arbesú <p>" +
+				"</li><li>Calle: Chopin 5, Apartamento 203 <p>" +
+				"</li><li>Poblacion: Santa Ponsa <p>" +
+				"</li><li>Codigo Postal: 07180 <p>" +
+				"</li><li>Localidad: Mallorca<p>" +
+				"</li><li>E-mail: alalar@wanadoo.es <p>" +
+				"</li></ul>",
+				
+				"<CENTER> DATOS ACADEMICOS </CENTER>" +
+				"<ul><li>Ingeniero Técnico en Informática<p>" +
+				"</li><li>Tecnico especialista de electricidad/electrónica<p>" +
+				"</li><li>Curso de ASP.Net<p>" +
+				"</li><li>Curso de Certificacion CISCO CCNA<p>" +
+				"</li><li>Tecnico en Sistemas Automatas Programables (Módulo grado III)<p>" +
+				"</li><li>Curso UNED Creacion de recursos WEB (1 año)<P>" +
+				"</li><li>Curso UNED Generacion de paginas WAP (1 año)<P>" +
+				"</li><li>Curso UNED Redes de Alta velocidad (1 año)<P>" +
+				"</li><li>Curso verano entorno HP-UX<P>" +
+				"</li><li>Curso verano programacion Delphi<P>" +
+				"</li></ul>",
+
+				"<Center> DATOS PROFESIONALES  </CENTER>" +
+				"<ul><li>Trabajando en StayinFront, en 2005 en Londres y desde el 2006 desde España como freelance" +
+				". Empresa que desarrolla aplicaciones CRM utilizando UML, .Net, VBA, ASP, SQL Server, etc." +
+				"<P>Tambien he realizado formacion presencial a grupos de usuarios y presentaciones a futuros clientes. " +
+				"Algunos proyectos fueron Roche Turquia, REL, Momentum, Sanofi, Randox, WarnerChilcott, etc" +
+				"</li><li>Desarrollo de aplicacion en ASP.NET de gestion de menus para una cadena hotelera" +
+				"</li><li>Empresa ARRANJAMENTS, 1997/2004," +
+				"<P>Responsable de la zona norte de esta empresa. 6 Personas a cargo" +
+				"<P>Empresa que se dedicaba al mantenimiento del parque informatico del Grupo Banco Sabadell" +
+				"</li></ul>",
+				
+				"<Center>OTROS DATOS</CENTER>" +
+				"<ul><li>Ingles hablado y escrito, un año viviendo en Londres. Aprobado el \"First Certicate in English\" (FCE) de Uni. Cambridge<P>" +
+				"</li><li>Conocimientos de Frances a nivel medio<P>" +
+				"</li><li>Trabajo en entornos tanto UNIX como NT<P>" +
+				"</li><li>Varios lenguajes de programacion OOP (Asp.Net, .Net, Delphi,Java,..)<P>" +
+				"</li><li>Trabajo con BD y lenguaje SQL<P>" +
+				"</li><li>Trabajo con paginas WEB estaticas y dinamicas<P>" +
+				"</li><li>Trabajo con servidores WEB (Apache o IIS) <p>" +
+				"</li><li>Casado<P>" +
+				"</li></ul>");
+var paginaEN = new Array("<Center> PERSONAL INFO </Center>" +
+				"<ul><li>Name: Alberto Alvarez Arbesú <p>" +
+				"</li><li>Address: Chopin 5, Apartamento 203 <p>" +
+				"</li><li>City: Santa Ponsa<p>" +
+				"</li><li>Postal Code: 07180 <p>" +
+				"</li><li>Region: Mallorca<p>" +
+				"</li><li>E-mail: alalar@wanadoo.es <p>" +
+				"</li></ul>",
+				
+				"<CENTER> STUDIES </CENTER>" +
+				"<ul><li>A degree in Computer Science<p>" +
+				"</li><li>Upper-grade vocational training in Electronics<p>" +
+				"</li><li>ASP.NET Course<p>" +
+				"</li><li>CISCO CCNA Course<p>" +
+				"</li></ul>",
+
+				"<Center> WORKING EXPERIENCE  </CENTER>" +
+				"<ul><li>I have worked at StayinFront since 2005, first year in London office and then as a contractor from Spain" +
+				"<P>It is a CRM company and I had to use UML, .Net, VBA, ASP, SQL Server, etc." +
+				"<P>I have worked for lots of projects to different companies such as Roche, REL, Momentum, Sanofi, Randox, WarnerChilcott, etc " +
+				"</li><li>Developing an application in ASP.NET to manage the recepies & menus for an hotel chain" +
+				"</li><li>ARRANJAMENTS Company, 1997/2004," +
+				"<P>I was the person in charge of the North zone of that company. I had 5 persons who reported to me" +
+				"<P>This company worked for Sabadell Bank" +
+				"</li></ul>",
+				
+				"<Center>OTHER INFO</CENTER>" +
+				"<ul><li>Advanced English level, I lived one year in London and have the First Certificate in Eglish (FCE)<P>" +
+				"</li><li>intermediate level of French<P>" +
+				"</li><li>I have worked on Unix and NT systems<P>" +
+				"</li><li>Knowledge of several OOP (Delphi,.Net,Java,..)<P>" +
+				"</li><li>I have worked with SQL server and knowledge of SQL<P>" +
+				"</li></ul>");				
+				
+	var intIdioma =0;
+	function CambiarIdioma()
+	{
+		if (intIdioma==1)
+		{
+			 for (i=0;i<paginaES.length;i++)
+			{
+				document.getElementById("cuadro" + (i)).innerHTML = paginaES[i];
+			}
+			document.getElementById("ImgBandera").src="../uk2.gif"
+			intIdioma=0
+		}
+		else
+		{
+			for (i=0;i<paginaEN.length;i++)
+			{
+				document.getElementById("cuadro" + (i)).innerHTML = paginaEN[i];
+			}
+			document.getElementById("ImgBandera").src="../es.gif"
+			intIdioma=1
+		}
+	}
+				
+	 for (i=0;i<paginaES.length;i++)
+    {
+    	document.getElementById("cuadro" + (i)).innerHTML = paginaES[i];
+    }
+	Inicio()
+	document.write("<Div id='Inicio' Style='position:absolute;left:100px;top:" + (Yabajo + 25) + "px;cursor:pointer;' " +
+	"onclick=\"document.location='../inicio.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+	document.write("<Div id='Bandera' Style='position:absolute;left:150px;top:" + (Yabajo + 35) + "px;cursor:pointer;' " +
+	"onclick=\"CambiarIdioma();\"" +
+	"onmouseover=\"window.status='Cambiar Idioma';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img id='ImgBandera' src='../uk2.gif'>" +
+	"</Div>")
+</Script>
+
+</body>
+</html>

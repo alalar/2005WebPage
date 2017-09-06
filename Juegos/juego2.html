@@ -1,0 +1,518 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var cursorX;
+var cursorY;
+var Tpelotas=5;
+var inP2X=6;
+var inP2Y=3;
+var inP3X=-4;
+var inP3Y=7;
+var inP4X=-7;
+var inP4Y=-4;
+var inP5X=4;
+var inP5Y=-5;
+var resultado=50;
+var segundos=0;
+var anchoX=window.screen.width * 9/10
+var anchoY= window.screen.height * 6/10
+var minX=window.screen.width / 10;
+var minY=(window.screen.height  / 10)
+var tamMundo=17;
+var tamBolas=15;
+var fin=0;
+var record=301;
+var tiempo=50;
+function PosX(capa)
+{
+ return(parseInt(document.getElementById(capa).style.left))
+}
+function PosY(capa)
+{
+  return(parseInt(document.getElementById(capa).style.top))
+}
+
+function  MoverX(capa,X)
+{
+  document.getElementById(capa).style.left=X;
+}
+function  MoverY(capa,Y)
+{
+  document.getElementById(capa).style.top=Y;
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+  document.getElementById(capa).style.visibility="visible";
+}
+function OcultarCapa(capa)
+{
+  document.getElementById(capa).style.visibility="hidden";
+}
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+        x=(x>(anchoX-tamMundo))?(anchoX-tamMundo):x
+        x=(x<(minX+tamMundo+5))?minX+tamMundo+5:x
+        y=(y>(anchoY-tamMundo))?(anchoY-tamMundo):y
+        y=(y<(minY+tamMundo+5))?minY+tamMundo+5:y
+        cursorX=x;
+        cursorY=y; 
+        
+        MoverXY("cuadro3",x-tamMundo,y-tamMundo)
+	return true
+}
+function vibrar(cont)
+{
+ var dato;
+ if (cont==0)
+ {
+//   document.body.bgColor="#bfbfbf";
+     dato=document.getElementById("Presultado").style.background
+     document.getElementById("Presultado").style.background=document.all["Presultado"].style.color
+     document.getElementById("Presultado").style.color=dato;
+     document.getElementById("Precord").style.color=document.getElementById("Presultado").style.color
+     document.getElementById("Precord").style.background=document.getElementById("Presultado").style.background
+     document.getElementById("Ptiempo").style.color=document.getElementById("Presultado").style.color
+     document.getElementById("Ptiempo").style.background=document.getElementById("Presultado").style.background
+
+//   MoverXY("tablero",minX+10,minY+10);
+   setTimeout("vibrar("+(cont+1)+")",20);
+ }
+ if (cont==1)
+ {
+//    MoverXY("tablero",minX,minY);
+     document.getElementById("Presultado").style.color="#FFFFFF";
+     document.getElementById("Presultado").style.background="#0000ff";
+     document.getElementById("Precord").style.color=document.getElementById("Presultado").style.color
+     document.getElementById("Precord").style.background=document.getElementById("Presultado").style.background
+     document.getElementById("Ptiempo").style.color=document.getElementById("Presultado").style.color
+     document.getElementById("Ptiempo").style.background=document.getElementById("Presultado").style.background
+//  document.body.bgColor="#FF9F3F";
+ }
+ 
+ 
+ 
+}
+
+function moverCirculo(circulo,incremento)
+{
+ var contX;
+ var contY;
+ var pX;
+ var pY;
+ pX=PosX(circulo)+tamBolas;
+ pY=PosY(circulo)+tamBolas;
+ if ( pX>(cursorX) ) 
+  {
+    contX=-1; 
+  }
+  else
+  {
+    contX=1;
+  }
+ if ( pY>(cursorY) ) 
+  {
+    contY=-1;
+  }
+  else
+  {
+    contY=1; 
+  }
+ if ( (Math.abs(pX-cursorX)<(tamBolas+tamMundo)) && (Math.abs(pY-cursorY)<(tamBolas+tamMundo)) )
+  {
+    resultado=resultado-1;
+    vibrar(0);
+    MoverXY(circulo,cursorX-tamBolas,cursorY-tamBolas);
+    document.all["Presultado"].innerHTML="<CENTER>vida "+resultado+"</CENTER>";
+  } 
+  else
+  {
+   MoverXY(circulo,pX+incremento*contX-tamBolas,pY+incremento*contY-tamBolas);
+  }
+}
+function moverPelota(pelota,incrementoX,incrementoY)
+{
+ var pX;
+ var pY;
+ var sol=0;
+ incrementoX=(incrementoX>0)?incrementoX+parseInt(segundos/25):incrementoX-parseInt(segundos/25);
+ pX=PosX(pelota)+incrementoX+tamBolas;
+ if (pX<(minX+tamBolas))
+  {
+   pX=(minX+tamBolas)
+   sol=1
+  }
+ if (pX>anchoX-tamBolas)
+ {
+   pX=anchoX-tamBolas
+   sol=1
+ }
+ incrementoY=(incrementoY>0)?incrementoY+parseInt(segundos/35):incrementoY-parseInt(segundos/35);
+ pY=PosY(pelota)+incrementoY+tamBolas;
+ if (pY<(minY+tamBolas))
+ {
+  pY=(minY+tamBolas)
+  sol=sol+2
+ }
+ if (pY>(anchoY-tamBolas))
+  {
+   pY=anchoY-tamBolas
+   sol=sol+2
+  }
+ if (   (Math.abs(pX-cursorX)<(tamBolas+tamMundo)) && 
+	(Math.abs(pY-cursorY)<(tamBolas+tamMundo)) )
+  {
+    resultado=resultado-1;
+    vibrar(0)
+    MoverXY(pelota,cursorX-tamBolas,cursorY-tamBolas);
+    document.all["Presultado"].innerHTML="<CENTER>vida "+resultado+"</CENTER>";
+  } 
+  else
+  {
+    MoverXY(pelota,pX-tamBolas,pY-tamBolas)
+  }
+  return sol;
+}
+function pasandoPor(cont)
+{
+ if (final==0)
+ {
+ if ( (Math.abs((PosX("pelota"+cont)+tamBolas)-cursorX)<(tamBolas+tamMundo)) && 
+    (Math.abs((PosY("pelota"+cont)+tamBolas)-cursorY)<(tamBolas+tamMundo)) )
+  {
+    resultado=resultado-1;
+    vibrar(0)
+    MoverXY(("pelota"+cont),cursorX-tamBolas,cursorY-tamBolas);
+    document.all["Presultado"].innerHTML="<CENTER>vida "+resultado+"</CENTER>";
+  } 
+ }
+}
+function moverCirculos(num)
+{
+ var res=0;
+ num=num+1
+// document.all["Precord"].innerHTML="p1X="+PosX("pelota1")+"p1Y"+PosY("pelota1")+"-"+
+// "p2X="+PosX("pelota2")+"p2Y="+PosY("pelota2")+"-"+
+// "p3X="+PosX("pelota3")+"p3Y="+PosY("pelota3")+"-"+
+// "p4X="+PosX("pelota4")+"p4Y="+PosY("pelota4")+"-"+
+// "pX="+cursorX+"p1Y="+cursorY;
+  
+ moverCirculo("pelota1",(6+parseInt(segundos/20)))
+ if (num == 100)
+  {
+   VerCapa("pelota2");
+  }
+ if (num > 100 )
+ {
+   res=moverPelota("pelota2",inP2X,inP2Y)
+   inP2X=((res==1) || (res==3))?inP2X * -1:inP2X
+   inP2Y=(res>1)?inP2Y * -1:inP2Y
+ }
+ if (num==200)
+ {
+  VerCapa("pelota3");
+ }
+ if (num>200) 
+ {
+  res=moverPelota("pelota3",inP3X,inP3Y)
+  inP3X=((res==1) || (res==3))?inP3X * -1:inP3X
+  inP3Y=(res>1)?inP3Y * -1:inP3Y
+ }
+ if (num==250) { VerCapa("pelota4") }
+ if (num>250)
+ {
+  res=moverPelota("pelota4",inP4X,inP4Y)
+  inP4X=((res==1) || (res==3))?inP4X * -1:inP4X
+  inP4Y=(res>1)?inP4Y * -1:inP4Y
+
+ }
+ if (num==300) { VerCapa("pelota5") }
+ if (num>300)
+ {
+  res=moverPelota("pelota5",inP5X,inP5Y)
+  inP5X=((res==1) || (res==3))?inP5X * -1:inP5X
+  inP5Y=(res>1)?inP5Y * -1:inP5Y
+  num=310
+ }
+ if (resultado>0)
+ { 
+   setTimeout("moverCirculos("+num+")",tiempo);
+ }
+ else
+ {
+  final()
+ }
+}
+function final()
+{
+ if (segundos==-1)
+ {
+  for (i=2;i<=Tpelotas;++i)
+  {
+   OcultarCapa("pelota"+i)
+   MoverXY("pelota"+i,1+(((i-2) % 2)*700),1+parseInt((i-2) / 2)*300)
+  }
+  MoverXY("pelota1",10,10);
+  VerCapa("pelota1");
+  segundos=0;
+  resultado=50;
+  document.all["Presultado"].innerHTML="<CENTER>vida "+resultado+"</CENTER>";
+  moverCirculos(0);
+  if (fin==1) { CuentaTiempo() }
+  fin=0
+ }
+ else
+ {
+  document.all["Presultado"].innerHTML="<CENTER>vida 0</CENTER>";
+  var cadena;
+  if (segundos>record)
+  {
+    segundos=segundos*4;
+    cadena=segundos.toString(16)+"AED";
+    alert('ENHORABUENA HAS SUPERADO EL RECORD ACTUAL, MANDA UN CORREO A albertobego@hotmail.com'+
+     ' con tu nombre, la puntuacion y la siguiente cadena de comprobacion '+ cadena);
+  } 
+  else
+  {
+    alert('Lo siento no has superado el record');
+  }
+  fin=1
+ }
+ 
+}
+function CuentaTiempo()
+{
+ segundos=segundos+1;
+ document.getElementById("Ptiempo").innerHTML="<Center>"+segundos+" segundos </Center>";
+ if (resultado>0) 
+  {
+   setTimeout("CuentaTiempo()",1000);
+  }
+}
+function Reiniciar()
+{
+segundos=-1;
+resultado=0;
+if (fin==1) { final() }
+}
+-->
+</SCRIPT>
+<Style>
+a {
+text-decoration:none;
+}
+
+.Borde {
+	border: solid 3px #FFFFFF;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	 padding:3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.BordeTablero {
+	border: solid 3px #FFFFFF;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #FF0000 0px 0px 60px;
+	 -moz-box-shadow: #FF0000 0px 0px 60px;
+	 box-shadow: #FF0000 0px 0px 60px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+</style>
+
+</head>
+<body bgcolor="#3FAFFF" background="sky.gif" style="overflow-x:hidden;overflow-y:hidden">
+<Div id="pelota1" Style="position:absolute;
+font-family:    Webdings;
+font-size:      30px;
+left:		5px;
+top:		100px;
+width:		1px;
+height:		1px;
+visibility:	visible;
+color:		#FF00FF;
+z-index:	3;">
+<image src="bola1.gif" height=30 width=30> 
+</Div>
+<Div id="pelota2" Style="position:absolute;
+font-family:    Webdings;
+font-size:      30px;
+left:		40px;
+top:		40px;
+width:		1px;
+height:		1px;
+visibility:	hidden;
+color:		#00FFFF;
+visibility:     hidden;
+z-index:	3;"
+onmouseout="pasandoPor(2)">
+<image src="bola2.gif" height=30 width=30> 
+</Div>
+<Div id="pelota3" Style="position:absolute;
+font-family:    Webdings;
+font-size:      30px;
+left:		680px;
+top:		40px;
+width:		1px;
+height:		1px;
+visibility:	hidden;
+color:		#FFFFFF;
+z-index:	3;"
+onmouseout="pasandoPor(3)">
+<image src="bola3.gif" height=30 width=30> 
+</Div>
+<Div id="pelota4" Style="position:absolute;
+font-family:    Webdings;
+font-size:      30px;
+left:		680px;
+top:		400px;
+width:		1px;
+height:		1px;
+visibility:	hidden;
+color:		#FFFFFF;
+z-index:	3;"
+onmouseout="pasandoPor(4)">
+<image src="bola3.gif" height=30 width=30> 
+</Div>
+<Div id="pelota5" Style="position:absolute;
+font-family:    Webdings;
+font-size:      30px;
+left:		30px;
+top:		400px;
+width:		1px;
+height:		1px;
+visibility:	hidden;
+color:		#FFFFFF;
+z-index:	3;"
+onmouseout="pasandoPor(5)">
+<image src="bola2.gif" height=30 width=30> 
+</Div>
+<Div id="Presultado" Style="position:absolute;
+font-family:	Comic Sans MS;
+font-size:      15px;
+left:		30px;
+top:		5px;
+width:		100px;
+height:		20px;
+visibility:	visible;
+color:		#FFFFFF;
+background:     #0000ff;
+z-index:	1;" class="Borde">
+<Center>vida 50</Center>
+</Div>
+<Div id="Ptiempo" Style="position:absolute;
+font-family:	Comic Sans MS;
+font-size:      15px;
+left:		550px;
+top:		1px;
+width:		180px;
+height:		20px;
+visibility:	visible;
+color:		#FFFFFF;
+background:     #0000ff;
+z-index:	1;" class="Borde">
+<Center>00000 segundos</Center>
+</Div>
+<Div id="Precord" Style="position:absolute;
+font-family:	Impact;
+font-size:      15px;
+left:		140px;
+top:		5px;
+width:		400px;
+height:		20px;
+visibility:	visible;
+color:		#FFFFFF;
+background:     #0000ff;
+z-index:	2;" class="Borde">
+<Center>RECORD ROSANNA 301 SEGUNDOS 1/9/2012</Center>
+</Div>
+<Div id="cuadro3" Style="position:absolute;
+font-family:	WebDings;
+font-size:      40px;
+left:		200px;
+top:		200px;
+width:		1px;
+height:		3px;
+visibility:	visible;
+color:		#7F009F;
+
+z-index:	2;">
+<image src="mundo09.gif" width=34 height=34> 
+</Div>
+<Div id="tablero" Style="position:absolute;
+font-family:	WebDings;
+font-size:      50px;
+left:		30px;
+top:		30px;
+width:		700px;
+height:		230px;
+visibility:	visible;
+background:	#000000;
+background-image:url(stars.gif);
+z-index:	0;" class="BordeTablero">
+</Div>
+<Div id="Empezar" Style="position:absolute;
+font-family:	Impact;
+font-size:      15px;
+left:		300px;
+top:		380px;
+width:		200px;
+height:		20px;
+visibility:	visible;
+background:     #00F2AF;
+color:		#FF00F2;
+text-align:center;
+z-index:	0;" class="Borde"
+onclick="Reiniciar()">
+<a href="#">Volver a Empezar</a>
+</Div>
+<Script>
+		var intY = 50;
+		document.getElementById("tablero").style.left = minX
+		document.getElementById("tablero").style.width = anchoX - minX
+		document.getElementById("tablero").style.top = minY 
+		document.getElementById("tablero").style.height = anchoY - minY
+		document.getElementById("Empezar").style.top = anchoY + 10
+		document.getElementById("Empezar").style.left = parseInt(anchoX/2 - 100)
+		document.getElementById("Presultado").style.top = minY - intY
+		document.getElementById("Presultado").style.left = minX
+		document.getElementById("Precord").style.top = minY - intY
+		document.getElementById("Precord").style.left = minX + 120
+		document.getElementById("Precord").style.width = anchoX - minX - 320
+		document.getElementById("Ptiempo").style.top = minY - intY
+		document.getElementById("Ptiempo").style.left = anchoX - 180
+		document.getElementById("pelota3").style.left = anchoX
+		document.getElementById("pelota4").style.left = anchoX 
+		document.getElementById("pelota1").style.left = minX
+document.onmousemove = mouseMove;
+moverCirculos(0);
+CuentaTiempo();
+</Script>
+<Script>
+	document.write("<Div id='Inicio' Style='position:absolute;left:20px;top:" + (window.screen.height-235) + "px;cursor:pointer;' " +
+	"onclick=\"document.location='./juego.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+</Script>
+</body>
+</html>

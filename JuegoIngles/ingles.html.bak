@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Vocabulario de inglés</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function Encima(capa)
+{
+ document.all[capa].style.background="#FFFF00"
+ document.all[capa].style.color="#FF0000"
+}
+function Suelto(capa)
+{
+ document.all[capa].style.background="#FF0000"
+ document.all[capa].style.color="#FFFF00"
+}
+-->
+</SCRIPT>
+<Style>
+.Texto{
+position:	absolute;
+font-family:	Arial Black;
+font-size:	20px;
+top: 200px;
+width:		120px;
+height:		30px;
+color:		#FFFF00;
+background:	#FF0000;
+z-index:	0;
+}
+</Style>
+</head>
+<body bgcolor="#FF9900">
+<Script>
+window.defaultStatus='Pagina sobre ingles'
+</Script>
+
+
+<p align="center" style="margin-left: 100; margin-right: 100">&nbsp;</p>
+
+<p align="center" style="background-color: #000000; border-style: solid; border-color: #FFFF00; margin-left: 100; margin-right: 100"><b><font size="7" color="#FFFF00">VOCABULARIO
+DE INGLES</font></b></p>
+<table width=80%>
+<tr>
+	<td align=center>
+<Div id="cocina" Class="Texto" Style="cursor:hand;"
+OnClick="document.location='cocina.html'"
+Onmouseover="Encima('cocina');window.status='Pulsa para entrar'" Onmouseout="Suelto('cocina')">
+<b>COCINA</b>
+</Div>
+</td>
+<td align=center>
+<Div id="comida" Class="Texto" Style="cursor:hand" 
+OnClick="document.location='comida.html'"
+Onmouseover="Encima('comida');window.status='Pulsa para entrar'" Onmouseout="Suelto('comida')">
+<b>COMIDA</b>
+</Div>
+</td>
+<td align=center>
+<Div id="personalidad" Class="Texto" Style="cursor:hand;"
+OnClick="document.location='personalidad.html'"
+Onmouseover="Encima('personalidad');window.status='Pulsa para entrar'" Onmouseout="Suelto('personalidad')">
+<b>PERSONALIDAD</b>
+</Div>
+</table>
+<p align="center">
+&nbsp;
+
+</p>
+<p align="center">
+&nbsp;
+
+</p>
+<p align="center">
+&nbsp;
+
+</p>
+<p>&nbsp;</p>
+<A HREF="inicio.html"> Ir a la página principal </A>
+<p>&nbsp;</p>
+<p><i><font size="2">Es un poco cutre pero espero que te guste, o por lo menos practiques un
+poco ;-)).</font></i></p>
+</body>
+
+</html>
+
+</body>
+
+</html>

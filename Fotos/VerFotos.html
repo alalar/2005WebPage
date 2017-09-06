@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+
+	<link rel="stylesheet" type="text/css" href="../Addins/AD Gallery/jquery.ad-gallery.css">
+	<script type="text/javascript" src="../Addins/jquery/js/jquery.js"></script>
+	<script type="text/javascript" src="../Addins/AD Gallery/jquery.ad-gallery.js"></script>
+
+<script type="text/javascript">
+  var NombreArchivos = new Array("Mallorca.gif","Mallorca2.gif", "Formentor.JPG","Mar.JPG", "Siesta.jpg","Egipto.gif","Escocia.gif","Noruega.gif","Noruega2.gif","Grecia2.gif","Grecia3.gif","Italia.gif","Noruega3.gif", "Paris.gif", "Paris2.gif" );
+  var NombreThumbs = new Array("Mallorca.jpg","Mallorca2.jpg", "Formentor.jpg","Mar.jpg", "Siesta.jpg","Egipto.jpg","Escocia.jpg","Noruega.jpg","Noruega2.jpg","Grecia2.jpg","Grecia3.jpg","Italia.jpg","Noruega3.jpg", "Paris.jpg", "Paris2.jpg" );
+  var Titulos = new Array("Playa Sarenalet","Lagos de Cuber", "Formentor", "Mar Mediterraneo", "Raco del Moro","Piramides en Egipto","Castillo en Escocia","Preikestolen en Noruega", "Glaciar en Noruega", "Puesta de sol en Santorini", "Santorini", "Pisa","Vacas lanudas", "Paris de noche", "Paris desde la torre Montparnasse");
+  var Descripciones = new Array("Esto es uno de los mejores sitios de Mallorca, si podeis pasar una noche en el albergue es increible!!", 
+							  "Si parece increible pero es Mallorca nevado :)",
+							  "Otro de los maravillosos sitios de Mallorca, solo se suele ir cuando se tiene que enseñar a alguna visita jeje",
+							  "Aqui se puede ver el increible mar que tiene Mallorca, que color!",
+							  "Uno de nuestros sitios preferidos de la isla, sobre todo para hacer snorkel!",
+							  "Esta es una foto ante una de las 7 Maravillas del mundo Antiguo y Moderno, la foto es del 2001 como pasa el tiempo!!",
+							  "Foto de uno de los mas famosos castillos en Escocia, muy conocido por salir en la pelicula los Inmortales y en la etiqueta del Whisky Cardhu",
+							  "Foto del impresionante precipicio que hay en el Preikestolen",
+							  "Foto del paisaje que hay en Noruega, hace mucho frio pero es muy bonito",
+							  "Esta es la foto de la puesta de sol en Santorini. Muy bonita, pero no es tan tranquila como parece, porque esta llena de turistas sacando fotos",
+							  "Otra imagen de Santorini de dia. Aunque es un sitio super turistico con muchisima gente y bastante caro. Es muy recomendable para estar un par de dias",
+							  "Imagen de los edificios mas caracteristicos de Pisa",
+							  "Siempre pense que eran solo las ovejas las que tenian lana, como en el Norte de Europa hace tanto frio tambien las vacas tienen lana!",
+							  "Foto de Paris de noche desde el museo del Louvre",
+							  "Foto de Paris desde la Torre de Montparnasse, las vistas son increibles tanto de dia como de noche"
+							  
+							  )
+ $(function() {
+    var galleries = $('.ad-gallery').adGallery({
+			width: 600, 
+			height: 400,
+			thumb_opacity: 0.5,
+			animation_speed: 500,
+			description_wrapper: false,
+			effect: 'slide-hori',
+			hooks: {
+                       displayDescription: false
+                     },
+			slideshow: {
+				enable: true,
+				autostart: true,
+				speed: 4000
+				}
+			});
+
+
+    $('#switch-effect').change(
+      function() {
+        galleries[0].settings.effect = $(this).val();
+        return false;
+      }
+    );
+    $('#toggle-slideshow').click(
+      function() {
+        galleries[0].slideshow.toggle();
+        return false;
+      }
+    );
+    
+  });
+  </script>
+
+  <style type="text/css">
+  * {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Arial, sans-serif;
+    color: #333;
+    line-height: 140%;
+  }
+  select, input, textarea {
+    font-size: 1em;
+  }
+  body {
+    padding: 30px;
+    font-size: 70%;
+	background:#343455;
+  }
+  h2 {
+    margin-top: 1.2em;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 1px dotted #dedede;
+  }
+  h3 {
+    margin-top: 1.2em;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .example {
+    border: 1px solid #CCC;
+    background: #f2f2f2;
+    padding: 10px;
+  }
+  ul {
+    list-style-image:url(list-style.gif);
+  }
+  pre {
+    font-family: "Lucida Console", "Courier New", Verdana;
+    border: 1px solid #CCC;
+    background: #f2f2f2;
+    padding: 10px;
+  }
+  code {
+    font-family: "Lucida Console", "Courier New", Verdana;
+    margin: 0;
+    padding: 0;
+  }
+
+  #gallery {
+	position:relative;
+	top:-10px;
+	width:620px;
+	left:50%;
+	margin-left:-310px;
+    padding: 20px;
+    background: #e1eef5;
+  }
+	.ad-image img{
+		webkit-border-radius: 12px;
+		 -moz-border-radius: 12px;
+		 border-radius: 12px;
+		 behavior: url(../Addins/Pie/PIE.htc);		
+	}
+	.ad-image-description {
+		
+		webkit-border-radius: 0px 0px 12px 12px;
+		 -moz-border-radius: 0px 0px 12px 12px;
+		 border-radius: 0px 0px 12px 12px;
+		 behavior: url(../Addins/Pie/PIE.htc);	
+
+	}
+	.BordeBrillante
+	{
+	webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow:  #6688FF 0px 0px 60px;
+	 -moz-box-shadow:  #6688FF 0px 0px 60px;
+	 box-shadow: #6688FF 0px 0px 60px;
+	 behavior: url(../Addins/Pie/PIE.htc);
+	}	
+  </style>
+  <title>Ver Fotos usando un plugging</title>
+</head>
+<body>
+<Script>
+	document.write("<Div id='Inicio' Style='position:absolute;left:30px;top:10px;cursor:pointer;' " +
+	"onclick=\"document.location='../inicio.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+if (navigator.appName == "Microsoft Internet Explorer")
+	{
+		var mySheet = document.styleSheets[0];
+		if (mySheet.addRule) {
+		   //mySheet.addRule(".ad-image-description", "background:none !important");		// For Internet Explorer
+		   mySheet.addRule(".ad-description-title", "background:#DDDDDD");		// For Internet Explorer
+		   //mySheet.addRule(".ad-description-desc", "color:red");		// For Internet Explorer
+		   mySheet.addRule(".ad-description-desc", "background:#DDDDDD");		// For Internet Explorer
+		   } else {
+		   ruleIndex = mySheet.cssRules.length;
+		   mySheet.insertRule('.ad-image-description {background:none !important;}', ruleIndex);	// For Firefox, Chrome, etc.
+		   mySheet.insertRule('.ad-description-title {color:red;}', ruleIndex+1);	// For Firefox, Chrome, etc.
+		   mySheet.insertRule('.ad-description-desc {color:red;}', ruleIndex+2);	// For Firefox, Chrome, etc.
+		   mySheet.insertRule('.ad-description-desc {background:#AAAAAA;}', ruleIndex+3);	// For Firefox, Chrome, etc.
+		  } 
+
+	}	
+</Script>
+  <div id="container">
+     <div id="gallery" class="ad-gallery BordeBrillante">
+      <div class="ad-image-wrapper">
+      </div>
+      <div class="ad-controls">
+      </div>
+      <div class="ad-nav">
+        <div class="ad-thumbs">
+          <ul class="ad-thumb-list">
+            <script>
+			 for (i=0;i<NombreArchivos.length;i++)
+			 {
+				document.write("<li><a href='./Fotos/" + NombreArchivos[i] + "'>");
+				document.write("<img src='./Thumbs/" + NombreThumbs[i] + "' title='" + Titulos[i] + "' alt='" + Descripciones[i] + "' class='image" + (i+1) + "'>");
+				document.write("</a> </li>");
+			 }
+			 
+			</script>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+  </div>
+</body>
+</html>

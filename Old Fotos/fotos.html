@@ -1,0 +1,523 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Pagina de fotos de amigos</title>
+</head>
+<Script>
+
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var mostrar=isNS?"show":"visible";
+var ocultar=isNS?"hide":"hidden";
+var imagen =new Array()
+var titulo= new Array()
+var texto= new Array()
+var Inicio=1
+var Final=27
+var Total=27
+var seguiratras=0
+var seguiradelante=0
+var Ielefante=new Image();
+var Ielefanteb=new Image();
+var Ipajaro=new Image();
+var Icazado=new Image();
+var Cazado=0;
+var PararAnimales=0;
+var tamanoVertical=window.screen.height
+var tamanoHorizontal=window.screen.width
+
+
+function CargarImagen(X,nombre)
+{
+ imagen[X]=new Image();
+ imagen[X].src=nombre
+}
+function IniciarItem(X,nombre,cabecera,descrip)
+{
+ CargarImagen(X,nombre)
+ titulo[X]=cabecera
+ texto[X]=descrip
+}
+
+function PosX(capa)
+{
+if ( isNS )
+ {
+  return(parseInt(document.layers[capa].left))
+ }
+ else
+ {
+  return(parseInt(document.all[capa].style.left))
+ }
+}
+function PosY(capa)
+{
+if ( isNS )
+ {
+  return(parseInt(document.layers[capa].top))
+ }
+ else
+ {
+  return(parseInt(document.all[capa].style.top))
+ }
+}
+function  MoverX(capa,X)
+{
+ if ( isNS )
+ {
+  document.layers[capa].left=X;
+ }
+ else
+ {
+  document.all[capa].style.left=X;
+ }
+}
+function  MoverY(capa,Y)
+{
+ if ( isNS )
+ {
+  document.layers[capa].top=Y;
+ }
+ else
+ {
+  document.all[capa].style.top=Y;
+ }
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+ if ( isNS )
+ {
+  eval("document.layers['" + capa + "'].visibility='" + mostrar + "'");
+ }
+ else
+ {
+  document.all[capa].style.visibility=mostrar;
+ }
+}
+function OcultarCapa(capa)
+{
+if ( isNS)
+ {
+  eval("document.layers['" + capa + "'].visibility= '" + ocultar+ "'");
+ }
+ else
+ {
+  document.all[capa].style.visibility=ocultar;
+ }
+}
+
+function MoverElefante()
+{
+ var x=PosX("MElefante")
+ if (x>tamanoHorizontal+40)
+ {
+  x=0
+  MoverXY("MElefante",x,50 + parseInt(Math.random()*tamanoVertical/2))
+ }
+ else
+ {
+  MoverX("MElefante",x+10)
+ }
+}
+function MoverPajaro()
+{
+ var x=PosX("MPajaro");
+ if ( (x>tamanoHorizontal)   || ((PosY("MPajaro")>tamanoVertical) && (Cazado==1)) )
+ {
+  Cazado=0
+  x=0
+  document.images["pajaro"].src=Ipajaro.src
+  MoverXY("MPajaro",x,50 + parseInt(Math.random()*tamanoVertical/2))
+ }
+ else
+ {
+    if (Cazado==0)
+   {
+    MoverX("MPajaro",x+10)
+   }
+   else
+   {
+//    X=((PosY("MPajaro")+20)!=X)?PosY("MPajaro"):X
+    x=(PosY("MPajaro")+10);
+    MoverY("MPajaro",x)
+   }
+ }
+}
+function MoverAnimales()
+{
+ MoverPajaro();
+ MoverElefante();
+ if (PararAnimales==0)
+  {
+    setTimeout("MoverAnimales()",150);
+  }
+  else
+  {
+    MoverX("MPajaro",-80);
+    MoverX("MElefante",-90);	
+    document.all["Bparar"].innerHTML="Mostrar Animales"
+  }
+}
+function Inicializar()
+{
+ IniciarItem(1,"cena.jpg","OMNI- PRESENTE","¿Que lee Benja?,¿Que esta hablando Charli y el Mele?,¿Que esta fumando Berto?, y ¿Por que coño hay dos botellas de agua en la mesa?")
+ IniciarItem(2,"costilla.jpg","STALLONE","¿Es ROCKY, es RAMBO, es TERMINATOR, no es KARAMES KORTINA")
+ IniciarItem(3,"mazo.jpg","DIFERENCIAS","La foto no está trucada él es así de grande, se alquila de portero de discoteca por 5 talegos la noche")
+ IniciarItem(4,"peta.jpg","RECORD MUNDIAL","El porro es de verdad y el Noruego tambien!!")
+ IniciarItem(5,"pisci.jpg","DEPRAVADOS","Cuando la degenaracion es tan grande solo los niños te apagan la sed")
+ IniciarItem(6,"primos.jpg","GARIMBA","Quien sobra aquí?, no el del dedo no. el de la garimba, por cierto no tienes vaso")
+ IniciarItem(7,"sanse.jpg","LAS AMIGAS Y EL MENDIGO","Que jode el sol o es que una mala noche la tiene cualquiera KARAMES?")
+ IniciarItem(8,"arbol.jpg","TRANS- FORMER","Se anuncia, payaso profesional, bodas, fiestas y banquetes. Toca la Txalaparta y recita vasco, no domina el amonal está en cursillos")
+ IniciarItem(9,"cerdo.jpg","NOVIO","En esta foto vemos a Bego el dia de su boda con su maridito, el tipo es un poco cerdo no????")
+ IniciarItem(10,"trabajo.jpg","PILINGUI","No se si la conoceran, pero a que todos saben de que trabaja eh???, :-)))))")
+ IniciarItem(11,"estudio.jpg","ERUDITO","Como se nota que estudio en Pando con Kancio y Pela. Que elegante, lo viste Armani")
+ IniciarItem(12,"justo.jpg","PUBLICIDAD","Si me pinto los labios y que?")
+ IniciarItem(13,"bar.jpg","Londres","Ya tamos todos en el bar, si nilo ye una camara, Zarpas te brillan un poco los ojos y por cierto Bego no bebas que levitas")
+ IniciarItem(14,"droga.jpg","EL DROGADICTO","Todos los grupos tienen un drogadicto y aquí el nuestro :-)))")
+ IniciarItem(15,"carnaval.jpg","CARNAVAL","Hay que ver como esta la Seguridad Social!!!!")
+ IniciarItem(16,"firma.jpg","AUTOGRAFO","Por fin lo conseguí!!!, consigo un autógrafo de mi idolo a que no adivinais quien es???")
+ IniciarItem(17,"coche1.jpg","COCHE","Que os parece el medio de transporte que nos hemos comprado este año, bonito no?")
+ IniciarItem(18,"agusti.jpg","AMIGOS","Aqui estoy yo con unos amigos de Gerona de Castello de Ampuries y ese verano lo pasamos genial, estamos en su fantastica terraza")
+ IniciarItem(19,"cerca.jpg","RES. LA CERCA","Aqui estamos con unos amigotes antes de una pitanza de escandalo, por cierto el sitio es en Taramundi")
+ IniciarItem(20,"grupo.jpg","ORQUESTA","Este fue un momento de nuestra vida que nos dio por la música, este era nuestro cartel publicitario :-)))")
+ IniciarItem(21,"socio.jpg","EDITOR","Este es el creador de este espacio, todos los textos se deben a él, no se sabe si lo que tiene delante es la inspiración")
+ IniciarItem(22,"bigben.jpg","BIGBEN","Donde sera la foto?")
+ IniciarItem(23,"boda.jpg","BODA","Seguro que sabeis quien se casa, HOMER por supuesto")
+ IniciarItem(24,"cadiz.jpg","CADIZ","El culturismo siempre fue lo nuestro")
+ IniciarItem(25,"fin1.jpg","FIN DE AÑO","Megafiestooooooon!!!")
+ IniciarItem(26,"fin3.jpg","FIN DE AÑO","Sigue el Megafiestooooooon!!!")
+ IniciarItem(27,"fin2.jpg","FIN DE AÑO","Normal que acabemos asi de rebentaos")
+ IniciarItem(28,"hyde.jpg","Hyde Park","Me va lo calorro")
+ IniciarItem(29,"playa1.jpg","RESACAZO","Pal bus ye por aqui?")
+ IniciarItem(30,"puente.jpg","Londres","Vaya pinta, parezco un mono")
+ IniciarItem(31,"tudela.jpg","A long time ago","Tamos igual, o no?")
+ IniciarItem(32,"vallelago.jpg","Deportistas","Ke no se diga que solo tamos de fiesta")
+ 
+ 
+ window.defaultStatus="PAGINA SOBRE FOTOS"
+ Ielefante.src="elefante.gif"
+ Ielefanteb.src="elefanteb.gif"
+ Ipajaro.src="pajaro.gif"
+ Icazado.src="cazado.gif"
+ MoverAnimales()
+}
+function Bailar(X)
+{
+ if (X==0)
+ {
+   document.images["elefante"].src=Ielefanteb.src
+   setTimeout("Bailar(1)",1800)
+ }
+ else
+ {
+   document.images["elefante"].src=Ielefante.src
+ }
+ 
+}
+function EscribirInfo(datos,titu)
+{
+  document.all["Informacion"].innerHTML=datos
+  document.all["Titulo"].innerHTML="<CENTER><u><b>"+titu+"</b></u></CENTER>"
+}
+function EscribirTitu(Capa,dato)
+{
+ document.all[Capa].innerHTML="<Center>"+dato+"</Center>"
+}
+var ancho=110
+var pasos=10
+var desp=parseInt(ancho/pasos)
+var Total
+var MarcoInicial
+var MarcoFinal
+var TiempoEspera=50
+var MoviendoImagenes=0
+function SeguirDes()
+{
+ MoviendoImagenes=0
+ if ( seguiratras==1 )
+ {
+  Atras()
+ }
+ if (seguiradelante==1)
+ {
+  Adelante()
+ }
+}
+
+function CrearCuadros(X){
+
+ ancho = parseInt(tamanoHorizontal/X)
+ desp=parseInt(ancho/pasos)
+ alto = parseInt(tamanoVertical/6)
+ Total=X+4
+ Inicio=1
+ Final=Total
+ MarcoInicial=0
+ MarcoFinal=Total-1
+
+
+
+ document.getElementById("Informacion").style.left = parseInt(tamanoHorizontal * 3/4 + 10)
+ document.getElementById("Informacion").style.top = tamanoVertical /2 - 50
+  document.getElementById("flechaInicio").style.top = parseInt(tamanoVertical - 240)
+  document.getElementById("Bparar").style.top =parseInt(tamanoVertical - 230)
+ document.getElementById("Bparar").style.left = tamanoHorizontal - 150
+ document.getElementById("Titulo").style.top = tamanoVertical /2
+ document.getElementById("Negativo").style.width = tamanoHorizontal
+  document.getElementById("Negativo").style.top = 2
+ document.getElementById("Negativo").style.height = alto + 20
+ document.getElementById("flechaI").style.top = alto + 30
+ document.getElementById("flechaD").style.top = alto + 30
+ document.getElementById("flechaD").style.left = tamanoHorizontal - 100
+ if (tamanoVertical>600)
+ 	AlturaCentro = parseInt(tamanoVertical/2)
+ else
+ 	AlturaCentro = parseInt(tamanoVertical/3);
+ document.getElementById("Centro").style.top = alto + 30
+ document.getElementById("Centro").style.height = AlturaCentro
+ document.getElementById("Centro").style.left = (tamanoHorizontal/4)
+ document.getElementById("Centro").style.width = tamanoHorizontal/2
+ strText = " "
+ for (i=0;i<parseInt(tamanoHorizontal/47);i++)
+ {
+ 	strText = strText + " g"
+	}
+ document.getElementById("Centro").innerHTML = "<p style='margin-top:1'><font face='Webdings'>&nbsp;" + strText + "<img name='FGrande' border='3' text='#FFFFFF' src='cacao.jpg' width=" + tamanoHorizontal/2 + " height=" + AlturaCentro + " align=Middle><p style='margin-top: -1'>&nbsp;" + strText + "</font>"
+  strText = " "
+  for (i=0;i<parseInt(ancho/16);i++)
+ {
+ 	strText = strText + " g"
+	}
+  for (var contador=0;contador<Total;++contador)
+    {
+    document.write('<div id="Marco'+contador+'" Style="position:absolute;top:' + 6+ 'px;left:'+(10-(2*ancho)+(contador*ancho))+'px;');
+    document.write('height:'+alto+'px;width:'+(ancho)+'px;background:#000000;');
+    document.write('font-size:10px;z-index:2;">');
+    document.write('<p style="margin-top:-2"><font face="Webdings">&nbsp;' + strText);
+    document.write('<img name="foto'+contador+'" src="'+imagen[contador+1].src+'" width='+ancho+' height='+parseInt(alto-20)+' border="1">');
+    document.write('<p style="margin-top: -2">&nbsp;' + strText +'</font>');
+    document.write('</DIV>');
+    }
+ document.images["FGrande"].src=imagen[Inicio+parseInt(Total/2)].src;
+ EscribirInfo(texto[Inicio+parseInt(Total/2)],titulo[Inicio+parseInt(Total/2)])
+}
+
+function mover(X){
+   for (var contador=0;contador<(Total);++contador)
+   {
+    MoverX("Marco"+contador,PosX("Marco"+contador)+X)
+   }
+}
+function MoverAdelante(X)
+{
+  if (X<pasos)
+  {
+	mover(desp)
+	setTimeout("MoverAdelante("+(++X)+")",TiempoEspera)
+  }
+  else
+  {
+   MoverX("Marco"+MarcoInicial,-(2*ancho)+10)
+   SeguirDes()
+  }
+
+}
+function MoverAtras(X)
+{
+  if (X<pasos)
+  {
+	mover(-desp)
+	setTimeout("MoverAtras("+(++X)+")",TiempoEspera)
+  }
+  else
+  {
+   MoverX("Marco"+MarcoFinal,(10-(2*ancho)+(Total-1)*ancho))
+   SeguirDes()
+  }
+}
+
+function Adelante(){
+ seguiradelante=1
+ if (MoviendoImagenes==0)
+ {
+  MoviendoImagenes=1
+  MoverAtras(0)
+  MarcoInicial=(MarcoInicial==Total-1)?0:++MarcoInicial
+  MarcoFinal=(MarcoFinal==Total-1)?0:++MarcoFinal  
+  Final=(Final==imagen.length-1)?1:++Final
+  Inicio=(Inicio==imagen.length-1)?1:++Inicio
+  document.images["foto"+MarcoFinal].src=imagen[Final].src
+
+
+ numero=((Inicio+parseInt(Total/2)) % (imagen.length-1))  
+ numero=(numero==0)?imagen.length-1:numero;
+
+ EscribirInfo(texto[numero],titulo[numero])
+ document.images["FGrande"].src=imagen[numero].src
+  
+ }
+}
+function Atras()
+{
+ seguiratras=1
+ if (MoviendoImagenes==0)
+ {
+  MoviendoImagenes=1
+  MoverAdelante(0)
+  MarcoInicial=(MarcoInicial==0)?Total-1:--MarcoInicial
+  MarcoFinal=(MarcoFinal==0)?Total-1:--MarcoFinal
+  Final=(Final==1)?imagen.length-1:--Final
+  Inicio=(Inicio==1)?imagen.length-1:--Inicio
+  document.images["foto"+MarcoInicial].src=imagen[Inicio].src
+
+  numero=((Inicio+parseInt(Total/2)) % (imagen.length-1))  
+  numero=(numero==0)?imagen.length-1:numero;
+  EscribirInfo(texto[numero],titulo[numero])
+  document.images["FGrande"].src=imagen[numero].src
+   }
+}
+</Script>
+<body bgcolor="#0050a0" text="#FFFFFF" style="overflow-X:hidden;overflow-Y:hidden;">
+<Div id="Negativo" 
+STYLE="position:absolute;
+font-size:	14px;
+top:            2px; 
+left:           -5px; 
+width:		800px;
+height:		160px;
+background:     #f06000;
+color:		#FFFFFF;
+visibility:    show;
+z-index:       0;"
+>
+</Div>
+<Div id="flechaI"
+STYLE="position:absolute;
+top:		300px;
+left:		30px;
+width:		70px;
+height:		20px;
+z-index:	1;
+cursor:		hand;"
+onmouseover="window.status='Ver fotos de la izquierda';return true">
+<img src="flechai.gif" onmouseover="Atras()" onmouseout="seguiratras=0">
+</Div>
+<Div id="flechaD"
+STYLE="position:absolute;
+top:		130px;
+left:		700px;
+width:		70px;
+height:		20px;
+z-index:	1;
+cursor:		hand;"
+onmouseover="window.status='Ver fotos de la derecha';return true">
+<img src="flechad.gif" onmouseover="Adelante()" onmouseout="seguiradelante=0">
+</Div>
+<Div id="flechaInicio"
+STYLE="position:absolute;
+top:		330px;
+left:		30px;
+width:		80px;
+height:		80px;
+z-index:	1;
+cursor:		hand;"
+onclick="document.location='../inicio.html'"
+onmouseover="window.status='Ir al INICIO';return true">
+<img src="casita.gif" >
+</Div>
+<Div id="Bparar"
+STYLE="position:absolute;
+font-family: 	Comic Sans MS;
+top:		410px;
+left:		680px;
+width:		110px;
+height:		10px;
+color:		#ffFF00;
+background:	#FF0000;
+font-size:	13px;
+z-index:	1;
+cursor:		hand;"
+
+onClick="PararAnimales=((PararAnimales + 1) % 2);
+        if (PararAnimales==0) 
+             {MoverAnimales();
+              document.all['Bparar'].innerHTML='Ocultar Animales'}";
+>
+Ocultar Animales
+</Div>
+<Div id="Informacion"
+STYLE="position:absolute;
+top:		185px;
+left:		580px;
+width:		200px;
+height:		150px;
+color:		#FFFFFF;
+font-size:	20px;
+z-index:	0;"
+>
+</Div>
+<Div id="Titulo"
+Style="position:absolute;
+top:		230px;
+left:		5px;
+width:		190px;
+height:		120px;
+color:		#FFFFFF;
+font-size:	28px;
+z-index:1;"
+>
+</Div>
+<Div id="Centro"
+STYLE="position:absolute;
+top:		125px;
+left:		205px;
+width:		350px;
+height:		298px;
+background:	#000000;
+color:		#FFFFFF;
+visibility:	show;
+font-size:	15px;
+z-index:	0;"
+>
+<p style="margin-top:1"><font face="Webdings">&nbsp;g g g g g g g g g g g g g g g
+<img name="FGrande" border="3" text="#FFFFFF" src="cacao.jpg" width="350" height="250" align=Middle>
+<p style="margin-top: -1">&nbsp;g g g g g g g g g g g g g g g</font>
+</Div>
+<Div id="MElefante"
+STYLE="position:absolute;
+top: 		150px;
+left:		-10px;
+width:		40px;
+height:		40px;
+visibility:	show;
+z-index:	4;"
+>
+<img name="elefante" src="elefante.gif" onmouseover="Bailar(0)">
+</div>
+<Div id="MPajaro"
+STYLE="position:absolute;
+top: 		30px;
+left:		-10px;
+width:		40px;
+height:		40px;
+visibility:	show;
+z-index:	4;"
+>
+<img name="pajaro" src="pajaro.gif" 
+  onmouseover="document.images['pajaro'].src=Icazado.src;Cazado=1">
+</div>
+
+<Script>
+Inicializar();
+CrearCuadros(7);
+</Script>
+</body>
+
+</html>

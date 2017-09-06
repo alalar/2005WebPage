@@ -1,0 +1,368 @@
+<html>
+
+<head>
+<title>Vocabulario de inglés de personalidad</title>
+<Style>
+.CssTitulo {
+	position: relative;
+	color:#FFFF00;
+	text-align:center;
+	font-size:20px;
+	font-weight: bold;
+	background-color: #000000;
+	border-style: solid;
+	border-color: #FFFFFF;
+	margin-left: 100;
+	margin-right: 100;
+}
+.Borde {
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssRespuestaDiv {
+	position:relative;
+	float:left;
+	top:10px;
+	text-align:center;
+	width:200px;
+	height:160px;
+	background: #36659B;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#36659B), to(#3DC5E6));
+	background: -webkit-linear-gradient(#36659B, #3DC5E6);
+	background: -moz-linear-gradient(#36659B, #3DC5E6);
+	background: -ms-linear-gradient(#36659B, #3DC5E6);
+	background: -o-linear-gradient(#36659B, #3DC5E6);
+	background: linear-gradient(#36659B, #3DC5E6);
+	-pie-background: linear-gradient(#36659B, #3DC5E6);
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssRespuesta1 {
+	position:relative;
+	width:170px;
+	background-color: #008080;
+	border-style: solid;
+	border-color: #FF9900;
+	left: 7px;
+	top:10px;
+	margin-bottom:20px;
+	padding:5px;
+}
+.CssRespuesta2 {
+	position:relative;
+	text-align:left;
+	width:160px;
+	left:7px;
+	padding-left:10px;
+	padding-top:5px;
+	background-color: #FF0000;
+	height:55px;
+}
+.CssQuestionDiv {
+	position:relative;
+	float:left;
+	top:10px;
+	margin-right:20px;
+	text-align:center;
+	width:380px;
+	height:160px;
+	background: #369B39;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#369B39), to(#6BE63D));
+	background: -webkit-linear-gradient(#369B39, #6BE63D);
+	background: -moz-linear-gradient(#369B39, #6BE63D);
+	background: -ms-linear-gradient(#369B39, #6BE63D);
+	background: -o-linear-gradient(#369B39, #6BE63D);
+	background: linear-gradient(#369B39, #6BE63D);
+	-pie-background: linear-gradient(#369B39, #6BE63D);
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssQuestions {
+	position:relative;
+	text-align:left;
+	width:320px;
+	height:20px;
+	background-color: #008080;
+	border: solid 2px white; 
+	margin-left: 10px; 
+	margin-right: 10px; 
+	padding-left:5px;
+	margin-bottom:10px;
+}
+</Style>
+</head>
+<SCRIPT>
+var numero, res, idioma
+var acertadas,realizadas,Error
+var opcion1,opcion2,opcion3,solucion,Palabra,Respuesta
+var datos
+acertadas = 0;
+realizadas = 0;
+datos = new Array(
+"Listo","Clever", 
+"Inteligente","Smart", 
+"Feo","Ugly", 
+"Poco atractivo","Plain", 
+"Horrible","Awful", 
+"Maleducado","Rude", 
+"Enfadado","Angry, annoyed", 
+"Violento","Violent", 
+"Amable","Kind", 
+"Simpático","Nice", 
+"Hablador","Talkative", 
+"Callado","Silent, quiet", 
+"Tonto","Silly, dumb (US), fool,dim", 
+"Loco","Mad, crazy", 
+"Estúpido","Stupid", 
+"Trabajador","Hard-working", 
+"Estudioso","Studious", 
+"Vago","Lazy", 
+"Egoísta","Selfish", 
+"Avaricioso","Mean", 
+"Rico","Rich", 
+"Pobre","Poor", 
+"Alegre","Happy", 
+"Triste","Sad", 
+"Afortunado","Lucky, fortunate", 
+"Desafortunado","Unlucky", 
+"Meticuloso","Meticulous", 
+"Despistado","Absent-minded", 
+"Confundido","Confused", 
+"Chulo","Cocky", 
+"Imaginativo","Imaginative", 
+"Cabezón","Stubborn person, Pig-headed person", 
+"Débil","Weak", 
+"Caradura","Cheeky", 
+"Gordo","Fat", 
+"Flaco","Thin, skinny", 
+"Alto","Tall", 
+"Bajo","Short", 
+"Desagradable","Unpleasant", 
+"Despreocupado","Unworried", 
+"Feliz","Happy", 
+"Pacífico","Peaceful", 
+"Nervioso","Nervous", 
+"Tranquilo","Calm", 
+"Irritable","Irritable", 
+"Huraño","Unsociable", 
+"Confiado","Unsuspecting", 
+"Desconfiado","Suspicious", 
+"Desaliñado","Untidy", 
+"Hábil","Skilful", 
+"Torpe","Clumsy", 
+"Ordenado","Tidy"
+)
+totaLineas=0;
+
+function VanRealizadas(numero) {
+ if (numero==null)
+   realizadas=0
+  else
+   realizadas=parseInt(numero);
+}
+function VanAcertadas(numero) {
+ if (numero==null)
+   acertadas=0
+  else
+   acertadas=parseInt(numero);; 
+}
+function TipoIdioma(numero) {
+ if (numero==null)
+   idioma=0
+  else
+   idioma=parseInt(numero);; 
+} 
+
+function InsertarCadena(numero,cadena) {
+switch (numero)
+	{
+	 case 1:
+	   opcion1=cadena;
+	   break;
+	 case 2:
+	   opcion2=cadena;
+	   break;
+	 case 3:
+	   opcion3=cadena;
+	   break;
+	}
+}
+
+function NuevaPalabra(numero) {
+   strPalabra="XXXX";
+  if (idioma==1)
+	{
+		strPalabra=datos[numero*2]; 
+		Palabra=datos[(numero*2)+1];
+	}
+	else
+	{
+       Palabra=datos[numero*2]; 
+       strPalabra=datos[(numero*2)+1];
+	}
+  respuesta=strPalabra;
+  return strPalabra;
+}
+
+function PonerIdioma() {
+ if (idioma ==0)
+	   document.getElementById("Esp").checked = true
+	else
+     document.getElementById("Ing").checked = true
+}
+
+function NuevoNumero() {
+ return Math.round( ( (Math.random()*(datos.length)) / 2 ))
+}
+
+function Iniciar() {
+  var contador,numero,valor1,valor2 
+  res=1
+  numero=NuevoNumero();
+  valor1=numero
+  solucion=Math.round(Math.random()*2)+1;
+  InsertarCadena(solucion,NuevaPalabra(valor1));
+  do
+     numero=NuevoNumero();
+  while (numero == valor1)
+  valor2=numero
+  InsertarCadena((solucion % 3)+1,NuevaPalabra(numero));
+
+  do
+     numero = NuevoNumero();
+   while ((numero == valor1) || (numero==valor2))
+   InsertarCadena(((solucion+1) % 3)+1,NuevaPalabra(numero));
+   solucion=((solucion+1) % 3)+1;
+}
+
+function Obtener(numero)
+{
+ var cadena
+ switch (numero)
+	{
+	  case 0:
+		cadena=Palabra;
+		break;
+	  case 1:
+		cadena=opcion1;
+		break;
+	  case 2:
+		cadena=opcion2;
+		break;
+	  case 3:
+		cadena=opcion3;
+		break;
+	}
+ document.writeln(cadena)
+}
+
+function Gopciones_onsubmit() {
+  if (res==solucion)
+    acertadas=acertadas+1
+  else
+    alert("   Has fallado la respuesta era " + respuesta);
+  document.getElementById("acertadas").value = acertadas;
+  document.getElementById("realizadas").value= realizadas+1;  
+
+}
+</SCRIPT>
+<body bgcolor="#CC55EE" text="#FFFFFF">
+<script language="JavaScript" type="text/javascript">
+	var cadena=document.location.search;
+	// Le quitamos el interrogante
+	cadena=cadena.substring(1,cadena.length);
+	// Separamos los distintos &
+	var parametros=cadena.split("&");
+	// Separamos los =
+	var valores=new Array;
+//	var nombres=new Array;
+//	var valores_legibles=new Array;
+	var temporal= new Array;
+	var posicion=null;
+	var total=null;
+	for (var i=0; i<parametros.length;i++){
+		temporal=parametros[i].split("=");
+		valores[i]=temporal[1];
+		//		nombres[i]=temporal[0];
+
+		// para presentarlos en pantalla quitamos los signos +
+		// que en realidad son espacios y "unescapamos" los 
+		// caracteres no convencionales (acentos etc)
+		valores[i]=unescape(valores[i]);
+		posicion=valores[i].indexOf("+");
+		while (posicion > -1){
+			  total=valores[i].length;
+			  valores[i]=valores[i].substring(0,posicion)+" "+valores[i].substring(posicion+1,total);
+			  posicion=valores[i].indexOf("+");
+		}
+	}
+	if (valores.length>1) {
+		VanAcertadas(valores[3]);
+		VanRealizadas(valores[4]);
+		TipoIdioma(valores[2]);
+	}
+    Iniciar()
+</script>
+<div class="Borde CssTitulo">
+	VOCABULARIO DE PERSONALIDAD</font></b>
+</div>
+<form method="GET" ID="Gopciones" Name="Gopciones" action="personalidad.html" onsubmit="Gopciones_onsubmit();">
+
+	  <div class="CssQuestionDiv Borde">
+			 Traduce la palabra<strong><font size="4">
+			 <Script >
+			 Obtener(0) 
+			 </Script>
+			 </font></strong>
+		   <input name="archivo" type="Hidden">
+			  <hr>
+			<div class="CssQuestions Borde">
+			  <input name="OP" type="radio" value="1" checked OnClick="res=1">
+			  <Script>
+				 Obtener(1)
+			 </Script>
+			</div>
+			<div class="CssQuestions Borde">
+			  <input type="radio" name="OP" value="2" OnClick="res=2">
+			  <Script >
+				 Obtener(2)
+			 </Script>
+			</div>
+			<div class="CssQuestions Borde">
+			  <input type="radio" name="OP" value="3" OnClick="res=3">
+			  <Script >
+				 Obtener(3)
+			 </Script>
+			</div>
+	  </div>
+	<div class="CssRespuestaDiv Borde">
+		  <div class="CssRespuesta1 Borde">
+			  Preguntar en <br />
+			  <input type="radio" id="Esp" name="ING" value="0" OnClick="Idioma=0">Español &nbsp;&nbsp;&nbsp;&nbsp;
+			  <input type="radio" id="Ing" name="ING" value="1" Checked OnClick="Idioma=1">Ingles
+		  </div>
+		<div class="CssRespuesta2 Borde">
+			 <input type="Text" id="acertadas" name="acertadas" value="" size="4"> <font size="3" color="#FFFFFF"><b>Acertadas</b></font>
+			 <input type="text" id="realizadas" name="realizadas" value="" size="4"> <font size="3"><b>realizadas</b></font>
+		</div>
+	</div>
+  
+
+	<div align="center" style="clear:both;position:relative;top:20px;">
+	 <input type="Submit" value="Respuesta" name="B3" >
+	
+	 </div>
+ </form>
+ <SCRIPT>
+  document.getElementById("acertadas").value = acertadas;
+  document.getElementById("realizadas").value= realizadas;
+  PonerIdioma();
+ </Script>
+
+
+</body>
+
+</html>

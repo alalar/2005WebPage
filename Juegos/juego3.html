@@ -1,0 +1,387 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var minX=160;
+var minY=120;
+var tamX=window.screen.width / 10;
+var tamY=window.screen.height / 10;
+var FichasX=5;
+var FichasY=4;
+var tablero=new Array();
+var margen=10;
+
+var segundos=0;
+var resultado=0;
+var agitarVeces=30;
+var agitando=1;
+
+var color="#FF0F7F";
+var Bcolor="#0C0D0C";
+var colorVer="#FFFFFF";
+var record=45;
+var fin=0;
+
+var vacia=FichasX*FichasY;
+var Arriba=0;
+var Abajo=0;
+var Drcha=0;
+var Izqda=0;
+function PosX(capa)
+{
+ return(parseInt(document.getElementById(capa).style.left))
+}
+function PosY(capa)
+{
+  return(parseInt(document.getElementById(capa).style.top))
+}
+
+function  MoverX(capa,X)
+{
+  document.getElementById(capa).style.left=X;
+}
+function  MoverY(capa,Y)
+{
+  document.getElementById(capa).style.top=Y;
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+  document.getElementById(capa).style.visibility="visible";
+}
+function OcultarCapa(capa)
+{
+  document.getElementById(capa).style.visibility="hidden";
+}
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+	// tu código va aquí
+        
+	return true
+}
+function vibrar(cont)
+{
+ if (cont==0)
+ {
+   document.body.bgColor="#FFFFFF";
+   setTimeout("vibrar("+(cont+1)+")",50);
+ }
+ if (cont==1)
+ {
+  document.body.bgColor="#2f7f2f";
+ }
+}
+
+
+function final()
+{
+ var cadena;
+ fin=1;
+ if (segundos<record)
+ {
+   segundos=segundos*4;
+   cadena=segundos.toString(16)+"CED";
+   alert('ENHORABUENA HAS SUPERADO EL RECORD ACTUAL, MANDA UN CORREO A albertobego@hotmail.com'+
+    'con tu nombre, la puntuacion y la siguiente cadena de comprobacion '+cadena);
+   segundos=segundos/4;
+ } 
+ else
+ {
+   alert('Lo siento no has superado el record');
+ }
+}
+function Mostrar(cont)
+{
+ if (agitando==0)
+ { 
+  if (  (tablero[Drcha]==cont) || (tablero[Izqda]==cont) || 
+        (tablero[Arriba]==cont) || (tablero[Abajo]==cont) )
+  {
+   document.all["ficha"+cont].style.background=color;
+   document.all["ficha"+cont].style.color=Bcolor;
+  }
+ }
+}
+function Ocultar(cont)
+{
+ if (agitando==0)
+ {
+  if (document.all["ficha"+cont].style.background=color)
+  {
+    document.all["ficha"+cont].style.background=Bcolor;
+    document.all["ficha"+cont].style.color=color;
+  }
+ }
+}
+function CuentaTiempo()
+{
+ if ((fin==0)  && (agitando!=1))
+  {
+   segundos=segundos+1;
+   document.all["Ptiempo"].innerHTML="<Center>"+segundos+" segundos </Center>";
+   setTimeout("CuentaTiempo()",1000);
+  }
+}
+function Reiniciar()
+{
+ agitando=1
+ segundos=-1;
+ fin=0;
+  for (i=1;i<=(FichasX*FichasY);i++)
+  {
+   tablero[i]=i;
+   MoverXY("ficha"+i,(minX+((i-1) % FichasX)*(tamX+margen)),
+          (minY+parseInt((i-1) / FichasX)*(tamY+margen)))
+  }
+  vacia=FichasX*FichasY;
+  Movimiento(5)
+  agitar(0)
+}
+function agitar(cont)
+{
+ var dato;
+ var ant;
+ document.all["Empezar"].innerHTML='<a href="#"><Center>Restart</center></a>'
+ if (cont<=agitarVeces)
+ {
+  ant=vacia 
+  while (ant==vacia)
+  {
+   dato=parseInt(Math.random()*4)
+   if ((dato==0) && (Arriba!=0))  { vacia=Arriba }
+   if ((dato==1) && (Drcha!=0))   { vacia=Drcha  }
+   if ((dato==2) && (Abajo!=0))   {  vacia=Abajo  }
+   if ((dato==3) && (Izqda!=0))   {  vacia=Izqda  }
+  }
+  Mover(ant,vacia)
+  if (cont==agitarVeces) { dato=5 }
+  Movimiento(dato)
+  setTimeout("agitar("+(cont+1)+")",50); 
+ }
+ else
+ {
+  if ( TodoOK() ) 
+  {
+    agitar(0)
+  }
+  else
+  {
+    agitando=0
+    segundos=0
+    CuentaTiempo();
+  }
+ }
+}
+function Mover(antes,ahora)
+{
+ MoverXY("ficha"+tablero[ahora],PosX("ficha"+(FichasX*FichasY)),PosY("ficha"+(FichasX*FichasY)))
+ MoverXY("ficha"+(FichasX*FichasY),(minX+((ahora-1) % FichasX)*(tamX+margen)),
+                   (minY+parseInt((ahora-1) / FichasX)*(tamY+margen))) 
+ tablero[antes]=tablero[ahora]
+ tablero[ahora]=FichasX*FichasY
+}
+function Movimiento(ant)
+{
+ if ((ant!=2) && (vacia > FichasX)      ) { Arriba=vacia-FichasX } else { Arriba=0}
+ if ((ant!=3) && ((vacia % FichasX)!=0) ) { Drcha=vacia+1 } else { Drcha=0 }
+ if ((ant!=0) && (vacia <= (FichasX*(FichasY-1))) ) { Abajo=vacia+FichasX } else { Abajo=0 }
+ if ((ant!=1) && ((vacia % FichasX)!=1) ) { Izqda=vacia-1 } else { Izqda=0 }
+}
+function TodoOK()
+{
+ var salida=true;
+ for (i=1;i<=FichasX*FichasY;++i)
+ {
+  if (tablero[i]!=i)
+  {
+    salida=false
+    i=(FichasX*FichasY)+1
+  }
+ }
+ return salida;
+}
+function MoverFicha(cont)
+{
+ if (agitando==0)
+ {
+  var ant=vacia;
+  if (tablero[Drcha]==cont) { vacia=Drcha }
+  if (tablero[Arriba]==cont) { vacia=Arriba}
+  if (tablero[Izqda]==cont) {vacia=Izqda}
+  if (tablero[Abajo]==cont) {vacia=Abajo}
+  if (ant!=vacia)
+    {
+     Mover(ant,vacia)
+     Movimiento(5)
+   }
+  if (TodoOK()) { final() }
+ }
+}
+function Inicio()
+{
+ var caracter;
+ for (i=1;i<(FichasX*FichasY);i++)
+ {
+  tablero[i]=i;
+  document.write('<Div id="ficha'+i+'" Style="position:absolute; ');
+  document.write('font-family: Comic Sans MS;');
+  document.write('font-size:'+(tamY * 7/10)+'px; color:'+color+';');
+  document.write('width:'+tamX+';height:'+tamY+';background:'+Bcolor+';');
+  document.write('left:'+(minX+((i-1) % FichasX)*(tamX+margen))+'px;');
+  document.write('top:'+(minY+parseInt((i-1) / FichasX)*(tamY+margen))+'px;" /n ');
+ 
+  document.write('onmouseover="Mostrar('+i+')"');
+  document.write('onmouseout="Ocultar('+i+')"');
+  document.write('onclick="MoverFicha('+i+')") class="CssTarjeta">');
+  document.write('<Center><B>'+tablero[i]+'</b></Center> \n');
+  document.write('</Div>');
+ }
+  document.write('<Div id="ficha'+(FichasX*FichasY)+'" Style="position:absolute; ');
+  document.write('font-family: Comic Sans MS;');
+  document.write('font-size:'+(tamY * 7/10)+'px; color:'+Bcolor+';');
+  document.write('width:'+tamX+';height:'+tamY+';background:'+colorVer+';');
+  document.write('left:'+(minX+((i-1) % FichasX)*(tamX+margen))+'px;');
+  document.write('top:'+(minY+parseInt((i-1) / FichasX)*(tamY+margen))+'px;" class="CssTarjetaVacia" > \n ');
+  document.write('\n');
+  document.write('</Div>');
+ 
+ vacia=FichasX*FichasY;
+ tablero[vacia]=vacia;
+}
+
+
+
+-->
+</SCRIPT>
+<Style>
+.Ttarjeta {
+font-family:    Helvetica;
+font-size:      20px;
+color:          #50FF50;
+background:	#FF00FF;
+position:       absolute;
+visibility:     hidden;
+width:		20px;
+height:		20px;	
+z-index:        1;
+}
+A{
+text-decoration:	none;
+color:			#FF005F;
+}
+.CssTarjeta
+{
+	position:absolute;
+	cursor:pointer;
+	border:solid 2px #33CCFF;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 background: #736868;
+	 background: -webkit-gradient(linear, 0 0, 0 bottom, from(#736868), to(#0C0D0C));
+	 background: -webkit-linear-gradient(#736868, #0C0D0C);
+	 background: -moz-linear-gradient(#736868, #0C0D0C);
+	 background: -ms-linear-gradient(#736868, #0C0D0C);
+	 background: -o-linear-gradient(#736868, #0C0D0C);
+	 background: linear-gradient(#736868, #0C0D0C);
+	 -pie-background: linear-gradient(#736868, #0C0D0C);
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssTarjetaVacia {
+	position:absolute;
+	cursor:pointer;
+	border:solid 2px #33CCFF;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	background: #553322;
+	 background: -webkit-gradient(linear, 0 0, 0 bottom, from(#553322), to(#0C0D0C));
+	 background: -webkit-linear-gradient(#553322, #0C0D0C);
+	 background: -moz-linear-gradient(#553322, #0C0D0C);
+	 background: -ms-linear-gradient(#553322, #0C0D0C);
+	 background: -o-linear-gradient(#553322, #0C0D0C);
+	 background: linear-gradient(#553322, #0C0D0C);
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	behavior: url(../Addins/Pie/PIE.htc);  
+}
+.Borde
+{
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #FFF 2px 2px 3px;
+	 -moz-box-shadow: #FFF 2px 2px 3px;
+	 box-shadow: #FFF 2px 2px 3px;
+	 padding:3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+</Style>
+</head>
+<body bgcolor="#2F7F2F" style="overflow-x:hidden;overflow-y:hidden;padding:0px;margin:0px;" 
+ onselectstart="return false;">
+<div id="MarcadorID" style="position:relative;top:0px;background:     #00F200;color:		#0000F2;border:solid 2px #FF0000;height:70px;left:20px;"
+class="Borde">
+	<div style="float:left;height:40px;width:450px;padding:5px;">
+		<Div id="Ptiempo" Style="position:relative;
+		font-family:	Comic Sans MS;
+		font-size:      20px;
+		left:		40px;
+		top:		5px;
+		width:		100%">
+		<Center>0 segundos</center>
+		</Div>
+		<Div id="Precord" Style="position:relative;
+		font-family:	Impact;
+		font-size:      20px;
+		left:		10px;
+		top:		5px;
+		width:		100%;">
+		<Center>RECORD 45 segundos NILO 1/1/2012</center>
+		</Div>
+	</Div>
+	<Div id="Empezar" Style="float:left;position:relative;
+	background:#33CCFF;
+	font-family:	Impact;
+	font-size:      15px;
+	left:10px;
+	top:		5px;
+	width:		90px;
+	margin:10px;" class="Borde"
+	onclick="Reiniciar()">
+		<a href="#"><Center>Start</center></a>
+	</Div>
+</Div>
+<Script>
+	
+	document.getElementById("MarcadorID").style.left = minX;
+	document.getElementById("MarcadorID").style.width= FichasX*(tamX+margen);
+	
+Inicio();
+</Script>
+<Script>
+	document.write("<Div id='Inicio' Style='position:absolute;left:20px;top:" + (window.screen.height-235) + "px;cursor:pointer;' " +
+	"onclick=\"document.location='./juego.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+</Script>
+</body>
+</html>

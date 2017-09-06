@@ -1,0 +1,179 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Vocabulario de inglés</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var oldBoton = "cocina"
+function Encima(capa)
+{
+	if (document.getElementById(capa).className.indexOf("CssPulsado")<0)
+		document.getElementById(capa).className="CssTexto CssEncima Borde";
+}
+function Suelto(capa)
+{
+	if (document.getElementById(capa).className.indexOf("CssPulsado")<0)
+		document.getElementById(capa).className="CssTexto Borde";
+}
+function BotonPulsado(capa)
+{
+	document.getElementById(oldBoton).className="CssTexto Borde";
+	document.getElementById(capa).className="CssTexto Borde CssPulsado";
+	oldBoton = capa;
+	
+}
+-->
+</SCRIPT>
+<Style>
+.CssPanelTotal {
+	position:relative;
+	width:900px;
+	left:50%;
+	margin-left:-450px;
+}
+.CssPanelIzquierdo {
+	float:left;
+	position: relative;
+	height:330px;
+	width:180px;
+	border:solid 5px #FFFFFF;
+	background: #369B39;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#369B39), to(#6BE63D));
+	background: -webkit-linear-gradient(#369B39, #6BE63D);
+	background: -moz-linear-gradient(#369B39, #6BE63D);
+	background: -ms-linear-gradient(#369B39, #6BE63D);
+	background: -o-linear-gradient(#369B39, #6BE63D);
+	background: linear-gradient(#369B39, #6BE63D);
+	-pie-background: linear-gradient(#369B39, #6BE63D);
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssPanelDerecho {
+	float:left;
+	padding:5px;
+	position: relative;
+	height:380px;
+	width:650px;
+	margin-left:10px;
+	border:solid 5px #FFFFFF;
+	background: #CC55EE;
+}
+.CssFrame
+{
+	height:100%;
+	width: 100%;
+}
+.CssTitulo {
+	position:relative;
+	top:30px;
+	font-size:	15px;
+	font-weight: bold;
+	height:50px;
+	color:#FFFF00;
+	background-color: #000000; 
+	text-align:center; 
+	border:solid 2px #FFFF00; 
+	width:150px;
+	left:10px;
+	margin-bottom:50px;
+	padding-top:5px;
+}
+.CssTexto{
+	position:	relative;
+	text-align: center;
+	font-family:	Arial Black;
+	font-size:	12px;
+	padding:0px;
+	height:		30px;
+	color:		#FFFF00;
+	background:	#FF0000;
+	border: solid 2px #FFFF00;
+	width:120px;
+	left:25px;
+	margin-bottom:10px;
+}
+.CssTexto A{
+	position:relative;
+	top:5px;
+	text-decoration:	none;
+	width:100%;
+	height:100%;
+	cursor: pointer;
+}
+.Borde {
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #666 5px 5px 3px;
+	 -moz-box-shadow: #666 5px 5px 3px;
+	 box-shadow: #666 5px 5px 3px;
+	behavior: url(../Addins/Pie/PIE.htc);  
+}
+
+.CssEncima
+{
+	color:		#FF0000;
+	background:	#33FF33;
+	
+}
+.CssPulsado
+{
+	color:		#FF0000;
+	background:	#FFFF00;
+	 -webkit-box-shadow: #FFFF00 0px 0px 10px;
+	 -moz-box-shadow: #FFFF00 0px 0px 10px;
+	 box-shadow: #FFFF00 0px 0px 10px;
+	 cursor: auto;
+	behavior: url(../Addins/Pie/PIE.htc);  
+}
+
+
+</Style>
+</head>
+<body bgcolor="#DDDDDD">
+<Script>
+window.defaultStatus='Pagina sobre ingles'
+</Script>
+<div class="CssPanelTotal">
+	<div class="CssPanelIzquierdo Borde">
+
+		<div class="Borde CssTitulo ">
+			VOCABULARIO DE INGLES
+		</div>
+
+		<Div id="cocina" class="CssTexto Borde CssPulsado">
+			<a href="cocina.html" target="Ventana" 
+			Onmouseover="Encima('cocina');window.status='Pulsa para entrar'" Onmouseout="Suelto('cocina')"
+			Onclick = "BotonPulsado('cocina')">COCINA</a>
+		</Div>
+
+		<Div id="comida" class="CssTexto Borde">
+			<a href="comida.html" target="Ventana" 
+			Onmouseover="Encima('comida');window.status='Pulsa para entrar'" Onmouseout="Suelto('comida')"
+			Onclick = "BotonPulsado('comida')">COMIDA</a>
+		</Div>
+
+		<Div id="personalidad" class="CssTexto Borde">
+			<a href="personalidad.html" target="Ventana" 
+			Onmouseover="Encima('personalidad');window.status='Pulsa para entrar'" Onmouseout="Suelto('personalidad')"
+			Onclick = "BotonPulsado('personalidad')">PERSONALIDAD</a>
+		</Div>
+
+
+		<Div id='Inicio' Style='position:relative;left:70px;top:55px;cursor:pointer;' 
+			onclick="document.location='../inicio.html'"
+			onmouseover="window.status='Ir al INICIO';return true;"
+			onmouseout="window.status='';return true;">
+			<img src='../casita.gif' width=30px height=30px>
+		</Div>
+	</div>
+	<div class="CssPanelDerecho Borde">
+		<iframe id="Ventana" name="Ventana" src="./cocina.html" class="CssFrame" frameborder="0"></iframe>
+	</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var mostrar=isNS?"show":"visible";
+var ocultar=isNS?"hide":"hidden";
+var ALTO=window.screen.height
+var ANCHO=window.screen.width
+
+var radioY=(ALTO / 2) - 100
+var radioX=(ANCHO / 2)- 100
+var Xini=(ANCHO / 2) - 100;
+var Yini=(ALTO / 2) - 100;
+var contador;
+var ContadorColor1;
+var ContadorColor2;
+var inc=Math.PI/180;
+var sombra=6;
+var separacion=15
+var longitudcadena
+var TextoX=1
+var TextoY=25
+
+
+var intLanguage = 0; //spanish
+
+var paginasES = new Array( "Juego de traduccion", "Pagina con fotos", "Mapa en Flash", "Fotos malaga","Juegos","Mi Curriculum", "Programas realizados")
+var comentariosES = new Array("Juego de traduccion ingles/españols","Fotos de amigos (no apto para todos los publicos) :)","Pagina de Flash para ver como funciona","Fotos de Malaga","Algunos juegos en JavaScript muy simples","Mi curriculum","Algunas utilidades programadas por mi que puedes usar")
+var paginasEN = new Array("Translation game", "Pictures", "Page in Flash", "Malaga pictures","Games","My Resume", "Own Programs")
+var comentariosEN = new Array("Translation game En/Sp","Pictures with friends (no recommended for all audience :) )","Pictures","A flash page made to know how it works","Malaga pictures","Some mere JavaScript games", "My resume or CV","Some program utilities made by me")
+var paginaEnlaces = new Array("JuegoIngles/ingles.html","Fotos/fotos.html","MapaFlash/mapaArranjaments.html","Malaga/fotos.html","Juegos/juego.html","Curriculum/curriculum.html","Programas/Programas.html")
+
+function PosX(capa)
+{
+if ( isNS )
+ {
+  return(parseInt(document.layers[capa].left))
+ }
+ else
+ {
+  return(parseInt(document.all[capa].style.left))
+ }
+}
+function PosY(capa)
+{
+if ( isNS )
+ {
+  return(parseInt(document.layers[capa].top))
+ }
+ else
+ {
+  return(parseInt(document.all[capa].style.top))
+ }
+}
+
+function  MoverX(capa,X)
+{
+ if ( isNS )
+ {
+  document.layers[capa].left=X;
+ }
+ else
+ {
+  document.all[capa].style.left=X;
+ }
+}
+function  MoverY(capa,Y)
+{
+ if ( isNS )
+ {
+  document.layers[capa].top=Y;
+ }
+ else
+ {
+  document.all[capa].style.top=Y;
+ }
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+ if ( isNS )
+ {
+  eval("document.layers['" + capa + "'].visibility='" + mostrar + "'");
+ }
+ else
+ {
+  document.all[capa].style.visibility=mostrar;
+ }
+}
+function OcultarCapa(capa)
+{
+if ( isNS)
+ {
+  eval("document.layers['" + capa + "'].visibility= '" + ocultar+ "'");
+ }
+ else
+ {
+  document.all[capa].style.visibility=ocultar;
+ }
+}
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+	// tu código va aquí
+        MoverX("Cabecera",x)
+        TextoX=x
+        TextoY=(y>37)?(y-12):25
+	return true
+}
+function PonerIngles()
+{
+	var elementos= paginasEN.length
+	 for (i=0;i<elementos;i++)
+    {
+    	document.getElementById("texto" + (i+1)).innerHTML = paginasEN[i]
+    	document.getElementById("Stexto" + (i+1)).innerHTML = paginasEN[i]
+    }
+    document.getElementById("titulo").innerHTML = "ALALAR WEB PAGE"
+    document.getElementById("Cabecera").innerHTML = "Personal Webpage"
+    
+    var cadena = "DO YOU LIKE IT?"
+	  for (x=0;x<cadena.length;x++)
+ 		{
+  	document.getElementById("cursor"+x).innerHTML = "<b>"+cadena.charAt(x)+"</b>"
+    }
+    intLanguage = 1
+}
+function PonerEspanol()
+{
+	 var elementos= paginasES.length
+	 for (i=0;i<elementos;i++)
+    {
+    	document.getElementById("texto" + (i+1)).innerHTML = paginasES[i]
+    	document.getElementById("Stexto" + (i+1)).innerHTML = paginasES[i]
+    }
+    document.getElementById("titulo").innerHTML = "PAGINA DE ALALAR"
+    document.getElementById("Cabecera").innerHTML = "Página personal"
+    var cadena = "TE GUSTAAAAAAA?"
+	  for (x=0;x<cadena.length;x++)
+ 		{
+  	document.getElementById("cursor"+x).innerHTML = "<b>"+cadena.charAt(x)+"</b>"
+    } 
+    intLanguage = 0   
+}
+function girar()
+{
+ var elementos= paginasES.length
+ for (i=0;i<elementos;i++)
+ {
+ 	MoverXY("texto" + (i+1) ,parseInt(Xini+Math.cos(contador+i*Math.PI/elementos)*radioX),
+                  parseInt(Yini+Math.sin(contador+i*Math.PI/elementos)*radioY));
+ 	MoverXY("Stexto" + (i+1),parseInt(Xini+Math.cos(contador+i*Math.PI/elementos)*radioX+sombra),
+                  parseInt(Yini+Math.sin(contador+i*Math.PI/elementos)*radioY+sombra));
+ 	}
+ contador +=inc;
+ setTimeout("girar()",100);
+}
+function fundido()
+{
+	var elementos= paginasES.length
+ ContadorColor1=(ContadorColor1+1);
+ ContadorColor2=(ContadorColor2+1);
+ if ( ContadorColor1 < 100 )
+ {
+  ContadorColor1<=15?cadena="0"+ContadorColor1.toString(16):cadena=ContadorColor1.toString(16);
+  ContadorColor2<=15?cadena1="0"+ContadorColor2.toString(16):cadena1=ContadorColor2.toString(16);
+
+  if ( ContadorColor1<30 )
+   {
+    titulo.style.color="#"+cadena+cadena1+cadena1;
+    for (i=0;i<elementos;i++)
+    {
+    	document.getElementById("Stexto" + (i+1)).style.color=titulo.style.color;
+    }
+    setTimeout("fundido()",200);
+   }
+   else
+   {
+   	for (i=0;i<elementos;i++)
+    {
+    	VerCapa("texto" + (i+1));
+    }
+    ;
+    VerCapa("Cabecera");
+    VerCapa("cuadro2");
+    VerCapa("cuadro1");
+    VerCapa("cuadro3");
+    titulo.style.color="#"+cadena+cadena+cadena1;
+    for (x=0;x<longitudcadena;++x)
+    {
+			VerCapa("cursor"+x)
+    }
+    setTimeout("fundido()",1);
+   }
+ }
+}
+
+function inicio()
+{
+	 var elementos= paginasES.length
+	 for (i=0;i<elementos;i++)
+    {
+    	VerCapa("texto" + (i+1));
+    	VerCapa("Stexto" + (i+1));
+    }
+ contador=0;
+ ContadorColor1=0x09;
+ ContadorColor2=0x59;
+ girar();
+ //fundido();
+    VerCapa("Cabecera");
+    VerCapa("cuadro2");
+    VerCapa("cuadro1");
+    VerCapa("cuadro3"); 
+ VerCapa("titulo");
+ 
+}
+
+function MoverTexto()
+{
+ for (x=longitudcadena-1;x>=1;--x)
+ {	
+ MoverXY("cursor"+x,PosX("cursor"+(x-1))+separacion,PosY("cursor"+(x-1)))
+ }
+ MoverXY("cursor0",TextoX,TextoY)
+ setTimeout("MoverTexto()",10)
+}
+ 
+function IniciarCursor(cadena)
+{
+ longitudcadena=cadena.length
+ for (x=0;x<cadena.length;x++)
+ {
+  document.write('<Div id="cursor'+x+'" Class="Tcursor"> \n');
+  document.write('<b>'+cadena.charAt(x)+"</b> \n");
+  document.write('</Div>')
+  y=x % 16
+  color=(y<=15)?y.toString(16)+"0":y.toString(16)
+  document.all["cursor"+x].style.color="#"+color+color+color
+  document.all["cursor"+x].style.width="1"
+  document.all["cursor"+x].style.fontSize="18"
+  MoverXY("cursor"+x,-50,-50)
+  VerCapa("cursor"+x)
+ }
+ document.onmousemove = mouseMove
+ MoverTexto()
+}
+function Mostrar(i)
+{
+ if ( isNS )
+ {
+  document.layers["ayuda"];
+ }
+ else
+ {
+ 	if (intLanguage==0)
+ 		texto = comentariosES[i]
+ 	 else
+ 		texto = comentariosEN[i];
+  document.all["ayuda"].innerHTML="<CENTER>"+texto+"</CENTER>";
+  VerCapa("ayuda");
+ }
+}
+
+-->
+</SCRIPT>
+<Style>
+.Tcursor {
+font-family:    Helvetica;
+font-size:      20px;
+color:          #50FF50;
+position:       absolute;
+top:            5px;
+left:           1x;
+visibility:     hidden;
+width:		150px;
+height:		1px;	
+z-index:        4;
+}
+.TSombra {
+font-family:    Helvetica;
+font-size:      22px;
+color:          #086868;
+position:       absolute;
+top:            50px;
+left:           200px;
+visibility:     hidden;
+width:		240px;
+height:		30px;	
+z-index:        0;
+}
+.Ttitulo {
+font-family:    Helvetica;
+font-size:      40px;
+color:          #D0D0D0;
+position:       absolute;
+top:            200px;
+left:           150px;
+visibility:     hidden;
+width:		450px;	
+height:		20px;
+z-index:        2;
+}
+.Tayuda {
+font-family:    Helvetica;
+font-size:      15px;
+color:          #FFFFFF;
+position:       absolute;
+top:            250px;
+left:           120px;
+visibility:     hidden;
+width:			  450;	
+height:		  20;
+z-index:        2;
+}
+
+.Ttexto {
+font-family:    Helvetica;
+font-size:      18px;
+color:          #FFFFFF;
+position:       absolute;
+top:            50px;
+left:           200px;
+visibility:     hidden;
+width:		200;
+height:		40;	
+z-index:        5;
+}
+A {
+text-decoration:none;
+color:          #ffffff;
+}
+.Timagen {
+ position: absolute;
+ visibility: hidden;
+}
+</style>
+</head>
+<body bgcolor="#085858" background="fondo.gif" style="overflow-x:hidden;overflow-y:hidden"
+onselectstart="return false;">
+<Div id="cuadro1" Style="position:absolute;
+left:		10px;
+top:		10px;
+width:	500px;
+height:		300px;
+visibility:	hidden;
+background:	#99cc00;">
+</Div>
+<Div id="cuadro2" Style="position:absolute;
+left:		250px;
+top:		150px;
+width:		530px;
+height:		270px;
+visibility:	hidden;
+background:	#ff9900;">
+</Div>
+<Div id="cuadro3" Style="position:absolute;
+left:		250px;
+top:		150px;
+width:		260px;
+height:		160px;
+background:	#cccc00;
+visibility:	hidden;">
+</Div>
+
+<Div id="Cabecera" Class="Tcursor" Style="width:200px">
+Página personal
+</Div>
+
+<Div id="titulo" Class="Ttitulo">
+PAGINA DE ALALAR
+</div>
+<Script>
+	//paginasES comentariosES paginaEnlaces
+ var elementos= paginasES.length
+ for (i=0;i<elementos;i++)
+ {
+	document.write("<DIV id='Stexto" + (i+1) + "' Class='Tsombra'>" + paginasES[i] + "</DIV>");
+	document.write(	"<Div id='texto" + (i+1) + "' Class='Ttexto' Style='cursor:hand'" +
+	"onclick=\"document.location='" + paginaEnlaces[i] + "'\" " +
+	"onMouseOver = \"Mostrar('" + i + "')\" " +
+	"onMouseOut = 'OcultarCapa(\"ayuda\")'>" +	
+		paginasES[i] +
+	 "</DIV>");
+}
+</Script>
+
+<DIV id="Banderas"Style="position:absolute;
+left:		5px;
+top:		30px;
+cursor: hand;
+width:		60px;
+height:		10px;">
+<img src="es.gif" width=20px onclick="PonerEspanol()">
+<img src="uk2.gif" width=20px onclick="PonerIngles()">
+</DIV>
+
+
+<DIV id="ayuda" Class="Tayuda">
+la ayuda
+</DIV>
+<Script>
+	document.getElementById("titulo").style.top = ALTO * 3/10
+	document.getElementById("titulo").style.left = ANCHO * 35/100
+	document.getElementById("ayuda").style.top = ALTO * 4/10
+	document.getElementById("ayuda").style.left = ANCHO * 35/100
+	
+	document.getElementById("cuadro1").style.top = ALTO * 1/ 10
+	document.getElementById("cuadro1").style.left = ANCHO * 1/10
+	document.getElementById("cuadro1").style.height = ALTO * 3/10
+	document.getElementById("cuadro1").style.width = ANCHO * 6/10	
+	document.getElementById("cuadro2").style.top = ALTO* 3/10
+	document.getElementById("cuadro2").style.left = ANCHO * 3/10	
+	document.getElementById("cuadro2").style.height = ALTO * 3/10
+	document.getElementById("cuadro2").style.width =  ANCHO * 6 /10	
+	document.getElementById("cuadro3").style.top = ALTO * 3/10
+	document.getElementById("cuadro3").style.left = ANCHO * 3/10	
+	document.getElementById("cuadro3").style.height =  ALTO * 1 /10 
+	document.getElementById("cuadro3").style.width =  ANCHO * 4/10
+ inicio();
+ IniciarCursor("TE GUSTAAAAAAA?")
+</Script>
+</body>
+</html>

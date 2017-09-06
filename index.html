@@ -1,0 +1,251 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var separacionCursor=10
+var longitudcadena
+var TextoX=1
+var TextoY=1
+function PosX(capa)
+{
+ return(parseInt(document.getElementById(capa).style.left))
+}
+function PosY(capa)
+{
+  return(parseInt(document.getElementById(capa).style.top))
+}
+
+function  MoverX(capa,X)
+{
+  document.getElementById(capa).style.left=X;
+}
+function  MoverY(capa,Y)
+{
+  document.all[capa].style.top=Y;
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+  document.getElementById(capa).style.visibility="visible";
+}
+function OcultarCapa(capa)
+{
+  document.getElementById(capa).style.visibility="hidden";
+}
+var ALTO=window.screen.height
+var ANCHO=window.screen.width
+var IniPosX = ANCHO /2;
+var IniPosY = ALTO / 3;
+var radioX=ANCHO/2;
+var radioY=ALTO/4;
+var division=100;
+var inc=Math.PI/division;
+var separacion=3;
+var auxiliar=1;
+var auxiliarI=1;
+var longitud;
+var logitudI;
+var ModificarTexto
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+	// tu código va aquí
+        TextoX=x
+        TextoY=y-15
+ 	ModificarTexto=1  
+	return true
+}
+function MoverI(X)
+{
+ for (x=0;x<longitudI;++x)
+ {
+  MoverXY("letraI"+x,IniPosX+Math.cos((X+x*separacion)*inc)*radioX,
+                  IniPosY+Math.sin((X+x*separacion)*inc)*radioY)  
+ }
+}
+
+function MoverD(X)
+{
+ if (X==(division-(longitud*separacion)-10) )
+ {
+  auxiliar=-1
+ }
+ if (X==10)
+ {
+  auxiliar=1
+ }
+ for (x=0;x<longitud;++x)
+ {
+  MoverXY("letra"+x,IniPosX+Math.cos(Math.PI+(X+x*separacion)*inc)*radioX,
+                  IniPosY+Math.sin(Math.PI+(X+x*separacion)*inc)*radioY)  
+ }
+ setTimeout("Mover("+(X+auxiliar)+")",100)
+}
+function Mover(X)
+{
+ MoverI(X)
+ MoverD(X)
+
+}
+function Inicio(cadena,cadenaI)
+{
+ longitud=cadena.length
+ for (x=0;x<longitud;++x)
+ {
+  document.write('<Div id="letra'+x+'" Class="TtextoA"> \n');
+  document.write('<b>'+cadena.charAt(x)+"</b> \n");
+  document.write('</Div>')
+ }
+ longitudI=cadenaI.length
+ for (x=0;x<longitudI;++x)
+ {
+  document.write('<Div id="letraI'+x+'" Class="Ttexto"> \n');
+  document.write('<b>'+cadenaI.charAt(longitudI-x-1)+"</b> \n");
+  document.write('</Div>')
+ }
+ //document.getElementById("titulo").style.left = ANCHO/6
+ //document.getElementById("titulo").style.top = ALTO/3
+ 
+
+document.onmousemove = mouseMove
+}
+function Cambiar(X,Y,Z)
+{
+for (x=0;x<longitudI;++x)
+ {
+  document.all["letraI"+x].innerHTML=X.charAt(longitudI-x-1)
+  document.all["letraI"+x].style.color=Y
+  document.all["letraI"+x].style.fontSize=Z
+ }
+}
+function IniciarCursor(cadena)
+{
+ longitudcadena=cadena.length
+ for (x=0;x<cadena.length;x++)
+ {
+  document.write('<Span id="cursor'+x+'" Class="Tcursor"> \n');
+  document.write('<b>'+cadena.charAt(x)+"</b> \n");
+  document.write('</Span>')
+  MoverXY("cursor"+x,-50,-50)
+ }
+ 
+ MoverTexto()
+}
+function MoverTexto()
+{
+ if (ModificarTexto==1)
+  {
+   for (x=longitudcadena-1;x>=1;--x)
+   {	
+   MoverXY("cursor"+x,PosX("cursor"+(x-1))+separacionCursor,PosY("cursor"+(x-1)))
+   }
+   MoverXY("cursor0",TextoX,TextoY)
+  }
+ setTimeout("MoverTexto()",10)
+}
+
+-->
+</SCRIPT>
+<Style>
+.Tcursor {
+font-family:    Arial;
+font-size:      15px;
+color:          #FFFF00;
+position:       absolute;
+top:            5px;
+left:           1px;
+visibility:     visible;
+width:		15px;
+height:		1px;
+z-index:        1;
+overflow-x:	hidden;
+}
+.TtextoA {
+font-family:    Helvetica;
+font-size:      35px;
+color:          #FFFFFF;
+position:       absolute;
+top:            1px;
+left:           1x;
+visibility:     visible;
+width:		1;
+height:		1;	
+z-index:        0;
+}
+.Ttexto {
+font-family:    Helvetica;
+font-size:      20px;
+color:          #FFFFFF;
+position:       absolute;
+top:            1px;
+left:           1x;
+visibility:     visible;
+width:		1;
+height:		1;	
+z-index:        0;
+}
+A {
+text-decoration:none;
+color:          #EEEEEE;
+}
+.Borde
+{
+ webkit-border-radius: 12px;
+ -moz-border-radius: 12px;
+ border-radius: 12px;
+ -webkit-box-shadow:  #FFFF00 0px 0px 200px;
+ -moz-box-shadow:  #FFFF00 0px 0px 200px;
+ box-shadow: #FFFF00 0px 0px 200px;
+ behavior: url(./Addins/Pie/PIE.htc);
+}
+</style>
+</head>
+<body bgcolor="#085868" style="overflow-X:Hidden;width:100%;">
+<Div id="titulo" Style="position:absolute;
+font-family:    	Helvetica;
+font-size:      	60px;
+color:          	#FFFFFF;
+position:       	absolute;
+top:            	50%;
+left:				50%;
+margin-left:		-350px;
+margin-top:			-30px;
+visibility:     	visible;
+width:			700px;
+height:			60px;	
+background:		#000000;
+text-decoration:	none;
+text-align: center;
+padding:2px;
+z-index:        	1;
+cursor: 		pointer;" class="Borde"
+onmouseover='document.all["titulo"].style.background="#FFFFFF";
+   document.all["titulo"].style.color="#000000";
+   window.status="GO TO THE PAGE ";
+   Cambiar("CLICK!","#F0F0F0",40)'
+onmouseout='document.all["titulo"].style.background="#000000";
+	document.all["titulo"].style.color="#FFFFFF";
+	Cambiar("Fancy In?","#FFFFFF",20)'
+onclick="document.location='inicio.html'">
+	<b>WEB DE ALBERTO</B>
+</Div>
+<Script>
+ window.defaultStatus="PAGINA DE ALBERTO";
+ Inicio("WEB OFICIAL","Fancy In?")
+ //IniciarCursor("ALBERTO WEB")
+ Mover(0)
+</Script>
+</body>
+</html>

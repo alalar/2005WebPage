@@ -1,0 +1,244 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>PAGINA WEB DE ALBERTO</title>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var isNS = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) >= 4);
+var mostrar=isNS?"show":"visible";
+var ocultar=isNS?"hide":"hidden";
+function PosX(capa)
+{
+if ( isNS )
+ {
+  return(parseInt(document.layers[capa].left))
+ }
+ else
+ {
+  return(parseInt(document.all[capa].style.left))
+ }
+}
+function PosY(capa)
+{
+if ( isNS )
+ {
+  return(parseInt(document.layers[capa].top))
+ }
+ else
+ {
+  return(parseInt(document.all[capa].style.top))
+ }
+}
+
+function  MoverX(capa,X)
+{
+ if ( isNS )
+ {
+  document.layers[capa].left=X;
+ }
+ else
+ {
+  document.all[capa].style.left=parseInt(X);
+ }
+}
+function  MoverY(capa,Y)
+{
+ if ( isNS )
+ {
+  document.layers[capa].top=Y;
+ }
+ else
+ {
+  document.all[capa].style.top=parseInt(Y);
+ }
+}
+function MoverXY(capa,X,Y)
+{
+ MoverX(capa,X);
+ MoverY(capa,Y);
+}
+function VerCapa(capa)
+{
+ if ( isNS )
+ {
+  eval("document.layers['" + capa + "'].visibility='" + mostrar + "'");
+ }
+ else
+ {
+  document.all[capa].style.visibility=mostrar;
+ }
+}
+function OcultarCapa(capa)
+{
+if ( isNS)
+ {
+  eval("document.layers['" + capa + "'].visibility= '" + ocultar+ "'");
+ }
+ else
+ {
+  document.all[capa].style.visibility=ocultar;
+ }
+}
+
+var cursorX=1
+var cursorY=1
+var divisor=13
+var Xderecha=window.screen.width;
+var Xmargen = window.screen.width/6
+var Yabajo=window.screen.Height * 8/10;
+var Ymargen = window.screen.Height/6
+var XI=1
+var XD=1
+var YS=1
+var YI=1
+var Tiempo=30
+var ActivarCursor=0
+function mouseMove(e) {
+	var x = (isNS)? e.pageX : event.x+document.body.scrollLeft
+	var y = (isNS)? e.pageY : event.y+document.body.scrollTop
+  ActivarCursor=1
+  x=((x-15)>Xderecha-Xmargen)?Xderecha-Xmargen:x-15
+  cursorX=(x<Xmargen)?Xmargen:x
+  y=((y-10)>Yabajo-Ymargen)?Yabajo-Ymargen:y-10
+  cursorY=(y<Ymargen)?Ymargen:y
+	XI=(cursorX-5)/divisor
+	XD=(cursorX-5-Xderecha)/divisor
+	YS=(cursorY-9)/divisor
+	YI=(cursorY-9-Yabajo)/divisor
+  return true
+}
+var colores = new Array ("#80201F","#85355F","#2A4AAF","#5F5F5F")
+function Inicio()
+{
+ document.onmousemove = mouseMove
+ Cruz()
+ for (x=0;x<4;++x)
+ {
+  //MoverXY("cuadro"+x,1,1);
+  document.all["cuadro"+x].style.background=colores[x]
+ }
+}
+function Cruz(X)
+{
+   document.all["cuadro0"].style.width=cursorX;
+   document.all["cuadro0"].style.height=cursorY;
+   MoverX("cuadro1",cursorX);
+   document.all["cuadro1"].style.height=cursorY;
+   document.all["cuadro1"].style.width=Xderecha-cursorX+20;
+   MoverY("cuadro2",cursorY);
+   document.all["cuadro2"].style.height=Yabajo-cursorY;
+   document.all["cuadro2"].style.width=cursorX;
+   MoverXY("cuadro3",cursorX,cursorY)
+   document.all["cuadro3"].style.width=Xderecha-cursorX+20;
+   document.all["cuadro3"].style.height=Yabajo-cursorY;
+ setTimeout("Cruz()",50);
+}
+
+-->
+</SCRIPT>
+<Style>
+.Tcursor {
+font-family:    WebDings;
+font-size:      9px;
+color:          #FFFFFF;
+position:       absolute;
+top:            -50px;
+left:           -50px;
+visibility:     hidden;
+width:		150px;
+height:		1px;	
+z-index:        0;
+}
+Div
+{
+visibility:		show;
+font-family:		Helvetica;
+font-size:		25px;
+overflow: hidden;
+z-index:		0;
+{
+</style>
+</head>
+<body bgcolor="#085858" style="overflow-x:hidden;overflow-y:hidden;">
+<Div id="cuadro0" Style="
+position:		absolute;
+color:			#FFFF00;
+top:			1px;
+left:			1px;
+">
+<b>
+<Center> DATOS PERSONALES </Center>
+Nombe: Alberto Alvarez Arbesú <p>
+Calle: Santa Margalida 9 Bloque D ap. 17 <p>
+Poblacion: Sa Torre, Llucmajor <p>
+Codigo Postal: 07609 <p>
+Localidad: Mallorca<p>
+E-mail: alalar@wanadoo.es <p>
+</Div>
+<Div id="cuadro1" Style="
+position:		absolute;
+color:			#00FFFF;
+top:			1px;
+left:			400px;
+">
+<B>
+<CENTER> DATOS ACADEMICOS </CENTER>
+Ingeniero Técnico Informática<p>
+Tecnico especialista de electricidad/electrónica<p>
+Tecnico en Sistemas Automatas Programables (Módulo grado III)<p>
+Curso UNED Creacion de recursos WEB (1 año)<P>
+Curso UNED Generacion de paginas WAP (1 año)<P>
+Curso UNED Redes de Alta velocidad (1 año)<P>
+Curso verano entorno HP-UX<P>
+Curso verano programacion Delphi<P>
+</Div>
+<Div id="cuadro2" Style="
+position:		absolute;
+color:			#FF00FF;
+top:			300px;
+left:			1px;
+">
+<B>
+<Center> DATOS PROFESIONALES  </CENTER>
+<P>-Empresa StayinFront desde 2005 (Londres) en 2006 desde España como freelance
+<P>Trabajo como desarrollador de software para CRM
+<P>Herramientas utilizadas UML, .Net, VBA, ASP, etc.
+<P>-Empresa ARRANJAMENTS, 1997/2004,
+<P>Responsable de la zona norte de esta empresa.
+<P>Empresa que se dedicaba al mantenimiento del parque informatico del Grupo Banco Sabadell
+</Div>
+<Div id="cuadro3" Style="
+position:		absolute;
+color:			#FFFFFF;
+top:			300px;
+left:			400px;
+">
+<Center>OTROS DATOS</CENTER>
+Ingles hablado y escrito, un año viviendo en Londres<P>
+Conocimientos de Frances a nivel medio<P>
+Trabajo en entornos tanto UNIX como NT<P>
+Varios lenguajes de programacion (Delphi,C,Java,..)<P>
+Trabajo con BD y lenguaje SQL<P>
+Trabajo con paginas WEB estaticas y dinamicas<P>
+Trabajo con servidores WEB (Apache o IIS) <p>
+Casado<P>
+</Div>
+
+<Script>
+Inicio()
+</Script>
+<Script>
+	document.write("<Div id='Inicio' Style='position:absolute;left:30px;top:" + Yabajo + "px;cursor:hand' " +
+	"onclick=\"document.location='../inicio.html'\"" +
+	"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+	"onmouseout=\"window.status='';return true\">" +
+	"<img src='../casita.gif' width=30px height=30px>" +
+	"</Div>")
+</Script>
+
+</body>
+</html>

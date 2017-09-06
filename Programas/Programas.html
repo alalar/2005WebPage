@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Programas de alberto</title>
+
+<Style id="MyStyle">
+.CuadroTitulo
+{
+	position:relative;
+	height:35px;
+	width:300px;
+	top:5px;
+	left:50%;
+	margin-left: -150px;
+	text-align:center;
+	font-size:30px;
+	font-weight: bold;
+	margin-bottom:30px;
+	
+}
+.CuadroSubTitulo
+{
+	position:relative;
+	top:0px;
+	height:30px;
+	text-align:center;
+	padding-top:5px;
+	font-size:20px;
+	font-weight: bold;
+	color:#000000;
+	width:500px;
+	left:50%;
+	margin-left: -250px;	
+}
+.CuadroTexto
+{
+	position:relative;
+	top:0px;
+	width: 100%;
+	overflow:visible;
+	text-align:left;
+	padding:5px;
+	left:30px;
+	font-size:18px;
+	color:#000000;
+}
+.Borde
+{
+	-webkit-border-radius: 4px;
+	 -moz-border-radius: 4px;
+	 border-radius: 4px;
+	 -webkit-box-shadow: #666 2px 2px 3px;
+	 -moz-box-shadow: #666 2px 2px 3px;
+	 box-shadow: #666 2px 2px 3px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssLink
+{
+	position:relative;
+	left:80px;
+	text-align:left;
+	width:300px;
+	padding-left:30px;
+	z-index:2;
+	margin-bottom:10px;
+	margin-top:5px;
+}
+.CssVideoLink
+{
+	position:relative;
+	left:50px;
+}
+
+.CssPanelBotones
+{
+	position:relative;
+	background: #666666;
+	top:2px;
+	left:100px;
+	width:145px;
+	height:20px;
+	padding-top:0px;
+	border:solid 2px #33CCFF;
+	text-align:center;
+	-webkit-border-radius: 12px;
+	 -moz-border-radius: 12px;
+	 border-radius: 12px;
+	 -webkit-box-shadow: #666 3px 3px 5px;
+	 -moz-box-shadow: #666 3px 3px 5px;
+	 box-shadow: #666 3px 3px 5px;
+	behavior: url(../Addins/Pie/PIE.htc); 	
+}
+.botonVideo
+{
+	position:relative;
+	float:left;
+	width:15px;
+	height:15px;
+	margin-left:5px;
+	padding:0px;
+	background:#AAAAAA !important;
+	border:solid 1px #FF0000 !important;
+	-webkit-border-radius: 4px;
+	 -moz-border-radius: 4px;
+	 border-radius: 4px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.botonVideo span
+{
+	position:relative;
+	top:-2px;
+	left:0px;
+	display:inline-block;
+}
+
+.BordeBrillante
+{
+	
+	-webkit-border-radius: 4px;
+	 -moz-border-radius: 4px;
+	 border-radius: 4px;
+	 -webkit-box-shadow:  #00FF00 0px 0px 50px;
+	 -moz-box-shadow:  #00FF00 0px 0px 50px;
+	 box-shadow: #00FF00 0px 0px 50px;
+	behavior: url(../Addins/Pie/PIE.htc); 
+}
+.CssPanelPrincipal
+{
+	position:relative;
+	width:80%;
+	margin-left:10%;
+	margin-right:10%;
+}
+.CssPopup
+{
+	position:relative;
+	width:640px;
+	height:480px;
+}
+a {
+ color:#AA0000;
+ }
+
+</Style>
+	<link rel="stylesheet" type="text/css" href="../Addins/jquery/css/ui-lightness/jquery-ui-1.9.0.custom.css">
+	<script type="text/javascript" src="../Addins/jquery/js/jquery.js"></script>
+	<script type="text/javascript" src="../Addins/jquery/js/jquery-ui.js"></script>
+<script>
+if (navigator.appName == "Netscape")
+	{
+		var mySheet = document.styleSheets[0];
+		if (mySheet.addRule) {
+		   mySheet.addRule(".BordeBrillante", "background:#BBFF99");		// For Internet Explorer
+		   } else {
+		   ruleIndex = mySheet.cssRules.length;
+		   mySheet.insertRule('.BordeBrillante {background:#BBFF99;}', ruleIndex);	// For Firefox, Chrome, etc.
+		  } 
+
+	}
+
+var SubTitulosES = new Array("CLIENTE FTP","COMPARAR FICHEROS EN DOS DIRECTORIOS","VER REGISTRO DEL PC");
+var InfoES = new Array("Este es un cliente de ftp totalmente operativo, realizado con winsockets y en Delphi. Esta todo realizado desde cero.",
+				"Este es un programa realizado en .NET para comparar los ficheros en dos directorios, es usado para saber si tenemos los mismos archivos en uno y otro directorio y para saber si ambos directorios tienen las mismas versiones en sus ficheros.",
+				"Este es un programa realizado en Delphi que nos permite ver el contenido del registro de windows, la ventaja es que nos permite tambien ver el contenido del registro de cualquier maquina remota, para ello lo único que debemos cumplir es que estemos como administrador en la maquina remota. Para ver el registro local, debemos dejar en blanco el texto cuando nos piden la maquina a conectarnos."
+				);
+var TituloES = "PROGRAMAS";
+var DescargaES = "Descargar Programa";
+var VerES = "Ver Video";
+var SubTitulosEN = new Array("FTP CLIENT","COMPARE FILES IN TWO DIFFERENT FOLDERS","SEE PC REGISTRY INFO");
+var InfoEN = new Array("This is a FTP client, it was made in Delphi using Winsockets. It is done from scratch, I mean, I have done all the code.",
+				"This is a .NET program which compares the files from two different folders, it can be used to know if we have the same files in both folders and it checks if the files have the same versions, modified dates and file size.",
+				"This is a Delphi program that allows us to see the info on our Windows registry. This program can see the registry on a remote machine too, we only need to be admin in that remote computer. To see the local registry we only need to leave blank the remote machine name when the program asks us for a remote computer."
+				);
+var TituloEN = "PROGRAMS";
+var DescargaEN = "Download File";
+var VerEN = "Watch a video";
+var intIdioma =0;
+	function CambiarIdioma()
+	{
+		if (intIdioma==1)
+		{
+			 for (i=0;i<SubTitulosES.length;i++)
+			{
+				document.getElementById("SubTitulo" + (i)).innerHTML = SubTitulosES[i];
+				document.getElementById("CuadroTexto" + (i)).innerHTML = InfoES[i];
+				document.getElementById("Archivo" + (i)).innerHTML = DescargaES;
+				document.getElementById("Video"+ (i)).innerHTML = VerES;
+			}
+			document.getElementById("Titulo").innerHTML = TituloES
+			document.getElementById("ImgBandera").src="../uk2.gif"
+			intIdioma=0
+		}
+		else
+		{
+			for (i=0;i<SubTitulosEN.length;i++)
+			{
+				document.getElementById("SubTitulo" + (i)).innerHTML = SubTitulosEN[i];
+				document.getElementById("CuadroTexto" + (i)).innerHTML = InfoEN[i];
+				document.getElementById("Archivo" + (i)).innerHTML = DescargaEN;
+				document.getElementById("Video"+ (i)).innerHTML = VerEN;
+			}
+			document.getElementById("Titulo").innerHTML = TituloEN
+			document.getElementById("ImgBandera").src="../es.gif"
+			intIdioma=1
+		}
+	}
+		$(function() {
+		$( "#dialog" ).dialog({
+				draggable: false,
+				resizable: false,
+				width:680,
+				modal: true,
+				autoOpen: false,
+				title: "Viendo el video de demostracion"
+			});
+	});
+	var strDefinicion = '<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="640" HEIGHT="480" id="VideoPlayer" ALIGN="center">' +
+		'<PARAM NAME=movie VALUE="_NombreArchivoSwf_"> <PARAM NAME=quality VALUE=high>' +
+		'<PARAM NAME=bgcolor VALUE=#FFFFFF> ' +
+		'<PARAM NAME=Play VALUE=True> ' +
+		'<EMBED src="./_NombreArchivoSwf_" Name="VideoPlayer" quality=high bgcolor=#333399 WIDTH="640" HEIGHT="480" ALIGN="center" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">' +
+		'</EMBED>' +
+	'</OBJECT>'
+	var strVideoFile;
+	function VerVideo(strVideo,strTitulo) {
+		$( "#dialog" ).dialog({title:strTitulo});
+		$( "#dialog" ).dialog("open");		
+		strVideoFile = strVideo;
+		ReiniciarVideo();
+	}	
+	function ReiniciarVideo()
+	{
+		$("#PanelVideo").html(strDefinicion.replace(/_NombreArchivoSwf_/g,strVideoFile));
+	}
+
+</script>
+</head>
+
+
+<body text="#FF0F2F" background="es.jpg" bgcolor="#008080">
+
+
+<div class="CssPanelPrincipal">
+
+	<div id="Titulo" class="BordeBrillante CuadroTitulo">
+		PROGRAMAS
+	</div>
+	  <div id="SubTitulo0" class="BordeBrillante CuadroSubTitulo">CLIENTE FTP</div>
+	  <div id="CuadroTexto0" class="BordeBrillante CuadroTexto">
+		Este es un cliente de ftp totalmente operativo, realizado con winsockets y en 
+		Delphi. Esta todo realizado desde cero.
+	  </div>							
+	<div class="BordeBrillante CssLink">
+		<a id="Archivo0" href="ClienteFTP.exe"  onmouseover="window.status='Descargar Archivo';return true" onmouseout="window.status='';return true">Descargar Archivo</a>
+		<a id="Video0" href="#" class="CssVideoLink" onmouseover="window.status='Ver Video';return true" onmouseout="window.status='';return true" onclick="VerVideo('VerAplicacionFTP.swf','Cliente FTP / FTP client');">Ver Video</a>
+	</div>
+	  
+	<div id="SubTitulo1"  class="BordeBrillante CuadroSubTitulo">COMPARAR FICHEROS EN DOS DIRECTORIOS</div>
+	<div id="CuadroTexto1" class="BordeBrillante CuadroTexto">
+		Este es un programa realizado en .NET para comparar los ficheros en dos directorios
+		, es usado para saber si tenemos los mismos archivos en uno y otro directorio y para
+		saber si ambos directorios tienen las mismas versiones en sus ficheros.
+	</div>
+	<div class="BordeBrillante CssLink">
+		<a id="Archivo1" href="CompareFilesTwoFolders.exe"  onmouseover="window.status='Descargar Archivo';return true" onmouseout="window.status='';return true">Descargar Archivo</a>
+		<a id="Video1" href="#" class="CssVideoLink" onmouseover="window.status='Ver Video';return true" onmouseout="window.status='';return true" onclick="VerVideo('CompareFolders.swf','Compara directorios / Compare folders');">Ver Video</a>
+	</div>
+	
+	<div id="SubTitulo2"  class="BordeBrillante CuadroSubTitulo">VER REGISTRO DEL PC</div>
+	<div id="CuadroTexto2" class="BordeBrillante CuadroTexto">
+		Este es un programa realizado en Delphi que nos permite ver el contenido del 
+		registro de windows, la ventaja es que nos permite tambien ver el contenido del 
+		registro de cualquier maquina remota, para ello lo único que debemos cumplir es 
+		que estemos como administrador en la maquina remota. Para ver el registro local, 
+		debemos dejar en blanco el texto cuando nos piden la maquina a conectarnos.
+	</div>
+	<div class="BordeBrillante CssLink">
+		<a id="Archivo2" href="Registro.exe" onmouseover="window.status='Descargar Archivo';return true" onmouseout="window.status='';return true">Descargar Archivo</a>
+		<a id="Video2" href="#" class="CssVideoLink" onmouseover="window.status='Ver Video';return true" onmouseout="window.status='';return true" onclick="VerVideo('Registro.swf','Ver Registro de Windows / See Windows Registry');">Ver Video</a>
+	</div>
+	<Script>
+		document.write("<Div id='Inicio' Style='position:absolute;left:30px;top:10px;cursor:pointer;' " +
+		"onclick=\"document.location='../inicio.html'\"" +
+		"onmouseover=\"window.status='Ir al INICIO';return true\"" +
+		"onmouseout=\"window.status='';return true\">" +
+		"<img src='../casita.gif' width=30px height=30px>" +
+		"</Div>")
+		document.write("<Div id='Bandera' Style='position:absolute;left:70px;top:10px;cursor:pointer;' " +
+		"onclick=\"CambiarIdioma();\"" +
+		"onmouseover=\"window.status='Cambiar Idioma';return true\"" +
+		"onmouseout=\"window.status='';return true\">" +
+		"<img id='ImgBandera' src='../uk2.gif'>" +
+		"</Div>")
+
+	
+	</Script>
+</div>
+
+<div id="dialog" title="Basic dialog" style="position:relative;">
+	<div id="PanelVideo">
+		<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="640" HEIGHT="480" id="VideoPlayer" ALIGN="center">
+			<PARAM NAME=movie VALUE="_NombreArchivoSwf_"> <PARAM NAME=quality VALUE=high>
+			<PARAM NAME=bgcolor VALUE=#FFFFFF> 
+			<PARAM NAME=Play VALUE=True> 
+			<EMBED src="./_NombreArchivoSwf_" ID="VideoPlayer" Name="VideoPlayer" quality=high bgcolor=#333399 WIDTH="640" HEIGHT="480" ALIGN="center" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
+			</EMBED>
+		</OBJECT>
+	</div>
+</div>
+</html>
